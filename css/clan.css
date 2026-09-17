@@ -1,14 +1,26 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    SAPIENSIA CLAN — MÓDULO 6: EL HEXÁGONO DEL CLAN & RED DE COLABORACIÓN
    Archivo: css/clan.css
    Descripción: Tarjetas de miembros, avatares animados, insignias y nodos externos.
    ========================================================================== */
 
-/* --- CUADRÍCULA PRINCIPAL DE MIEMBROS (HEXÁGONO) --- */
+/* --- CUADRÍCULA PRINCIPAL DE MIEMBROS (HEXÁGONO 3x2 SIMÉTRICO) --- */
 .clan-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+}
+
+@media (max-width: 960px) {
+  .clan-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 580px) {
+  .clan-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .clan-card {
