@@ -1,34 +1,41 @@
 /**
  * ==========================================================================
- * SAPIENSIA CLAN — REPRODUCTOR WEB DE AUDIOLIBROS INMERSIVO
+ * SAPIENSIA CLAN — CONTROLADOR DEL REPRODUCTOR WEB DE AUDIOLIBROS (V2.0)
  * Archivo: js/audio_player.js
- * Descripción: Control de audio HTML5, streaming, scrubber, capítulos y persistencia.
+ * Descripción: Audio HTML5, streaming, scrubber, capítulos y persistencia.
  * ==========================================================================
  */
 
 (function () {
   'use strict';
 
-  // Obtener parámetro de URL (?obra=poeta o ?obra=vela)
+  // 1. Obtener parámetro de URL (?obra=poeta o ?obra=vela)
   const urlParams = new URLSearchParams(window.location.search);
-  const currentObraId = urlParams.get('obra') || 'poeta';
+  let obraKey = urlParams.get('obra') || 'poeta';
+  if (obraKey !== 'poeta' && obraKey !== 'vela') {
+    obraKey = 'poeta';
+  }
 
-  // Referencias al DOM
+  // 2. Referencias al DOM
   const dom = {
-    headerTitle: document.getElementById('audio-header-title'),
+    tabPoeta: document.getElementById('tab-poeta'),
+    tabVela: document.getElementById('tab-vela'),
     btnSwitchReader: document.getElementById('btn-switch-reader'),
-    containerReady: document.getElementById('audio-ready-container'),
-    containerRecording: document.getElementById('audio-recording-container'),
     
-    // Elementos del libro
+    // Metadatos
     coverImg: document.getElementById('audio-cover-img'),
     bookTitle: document.getElementById('audio-book-title'),
     bookSubtitle: document.getElementById('audio-book-subtitle'),
     bookAuthor: document.getElementById('audio-book-author'),
+    metaDuration: document.getElementById('meta-duration'),
+    metaSize: document.getElementById('meta-size'),
     activeChapterName: document.getElementById('audio-active-chapter-name'),
+    btnDownload: document.getElementById('btn-download-mp3'),
     
     // Controles de audio
     btnPlay: document.getElementById('btn-audio-play'),
+    playIcon: document.getElementById('play-icon'),
+    playText: document.getElementById('play-text'),
     btnRewind: document.getElementById('btn-audio-rewind'),
     btnForward: document.getElementById('btn-audio-forward'),
     scrubberTrack: document.getElementById('audio-scrubber-track'),
@@ -38,21 +45,13 @@
     speedButtons: document.querySelectorAll('.btn-speed'),
     volumeSlider: document.getElementById('volume-slider'),
     btnVolume: document.getElementById('btn-volume-toggle'),
-    btnDownload: document.getElementById('btn-download-mp3'),
     
     // Tracklist
     tracklistGrid: document.getElementById('tracklist-grid'),
-    tracklistCount: document.getElementById('tracklist-count'),
-    
-    // Pantalla de grabación (VELA)
-    recordingCover: document.getElementById('recording-cover-img'),
-    recordingTitle: document.getElementById('recording-title'),
-    recordingQuote: document.getElementById('recording-quote'),
-    recordingMsg: document.getElementById('recording-msg'),
-    btnReadVela: document.getElementById('btn-read-vela')
+    tracklistCount: document.getElementById('tracklist-count')
   };
 
-  // Instancia de audio
+  // 3. Instancia de Audio HTML5
   const audio = new Audio();
   audio.preload = 'metadata';
 
@@ -61,152 +60,138 @@
   let isSeeking = false;
   let saveInterval = null;
 
-  // Formatear segundos a HH:MM:SS o MM:SS
+  // Formatear segundos a HH:MM:SS
   function formatTime(seconds) {
-    if (isNaN(seconds) || seconds < 0) return '00:00';
+    if (isNaN(seconds) || seconds < 0) return '00:00:00';
     const s = Math.floor(seconds);
     const hrs = Math.floor(s / 3600);
     const mins = Math.floor((s % 3600) / 60);
     const secs = s % 60;
     
     const pad = (n) => (n < 10 ? '0' + n : n);
-    if (hrs > 0) {
-      return `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
-    }
-    return `${pad(mins)}:${pad(secs)}`;
+    return `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
   }
 
-  // Inicialización de la obra
-  function initObra() {
-    if (!window.SAPIENSIA_OBRAS || !window.SAPIENSIA_OBRAS[currentObraId]) {
-      console.error('Obra no encontrada:', currentObraId);
+  // Inicializar Reproductor con los datos de la obra
+  function initPlayer() {
+    if (!window.SAPIENSIA_OBRAS || !window.SAPIENSIA_OBRAS[obraKey]) {
+      console.error('Obra no encontrada en catálogo:', obraKey);
       return;
     }
 
-    currentObra = window.SAPIENSIA_OBRAS[currentObraId];
-    dom.headerTitle.innerHTML = `${currentObra.title} <span>AUDIOLIBRO OFICIAL</span>`;
-    dom.btnSwitchReader.href = `reader.html?obra=${currentObra.id}`;
+    currentObra = window.SAPIENSIA_OBRAS[obraKey];
 
-    // Si está en estado de grabación (como VELA)
-    if (!currentObra.audio || currentObra.audio.status === 'recording') {
-      showRecordingState();
-      return;
+    // Resaltar pestaña activa en navbar
+    if (obraKey === 'poeta') {
+      if (dom.tabPoeta) dom.tabPoeta.classList.add('active');
+      if (dom.tabVela) dom.tabVela.classList.remove('active');
+    } else {
+      if (dom.tabVela) dom.tabVela.classList.add('active');
+      if (dom.tabPoeta) dom.tabPoeta.classList.remove('active');
     }
 
-    // Si el audiolibro está listo (como Los Textos del Poeta)
-    showReadyPlayer();
-  }
-
-  // Mostrar estado en grabación
-  function showRecordingState() {
-    dom.containerReady.style.display = 'none';
-    dom.containerRecording.style.display = 'flex';
-
-    if (dom.recordingCover && currentObra.cover) {
-      dom.recordingCover.src = currentObra.cover;
+    // Botón para saltar al lector de texto
+    if (dom.btnSwitchReader) {
+      dom.btnSwitchReader.href = `reader.html?obra=${currentObra.id}`;
     }
-    if (dom.recordingTitle) dom.recordingTitle.textContent = currentObra.title;
-    if (dom.recordingQuote && currentObra.audio && currentObra.audio.quote) {
-      dom.recordingQuote.textContent = currentObra.audio.quote;
-    }
-    if (dom.recordingMsg && currentObra.audio && currentObra.audio.message) {
-      dom.recordingMsg.textContent = currentObra.audio.message;
-    }
-    if (dom.btnReadVela) {
-      dom.btnReadVela.href = `reader.html?obra=${currentObra.id}`;
-    }
-  }
 
-  // Mostrar y configurar reproductor listo
-  function showReadyPlayer() {
-    dom.containerRecording.style.display = 'none';
-    dom.containerReady.style.display = 'flex';
-
-    dom.coverImg.src = currentObra.cover;
-    dom.bookTitle.textContent = currentObra.title;
-    dom.bookSubtitle.textContent = currentObra.subtitle || '';
-    dom.bookAuthor.innerHTML = `Voz & Narración: <span class="audio-author-highlight">${currentObra.audio.narrator || 'Anigami Agadni'}</span> • Coautoría con <img src="assets/clan/avatar_claudia_anim.gif" class="pixel-icon-inline" alt="Claudia" style="vertical-align: -3px; width: 18px; height: 18px; border-radius: 3px;"> Claudia`;
+    // Cargar metadatos
+    if (dom.coverImg) dom.coverImg.src = currentObra.cover;
+    if (dom.bookTitle) dom.bookTitle.textContent = currentObra.title;
+    if (dom.bookSubtitle) dom.bookSubtitle.textContent = currentObra.subtitle || '';
     
-    // Descarga directa
-    if (dom.btnDownload && currentObra.audio.src) {
-      dom.btnDownload.href = currentObra.audio.src;
-      dom.btnDownload.setAttribute('download', currentObra.audio.downloadName || 'Audiolibro.mp3');
+    if (dom.bookAuthor) {
+      dom.bookAuthor.innerHTML = `Voz & Narración: <span class="author-gold">${(currentObra.audio && currentObra.audio.narrator) || 'Anigami Agadni'}</span> • Coautoría con <img src="assets/clan/avatar_claudia_anim.gif" class="pixel-icon-inline" alt="Claudia"> Claudia`;
     }
 
-    // Configurar audio source
-    audio.src = currentObra.audio.src;
+    if (dom.metaDuration) dom.metaDuration.textContent = (currentObra.audio && currentObra.audio.duration) || '01:44:00';
+    if (dom.metaSize) dom.metaSize.textContent = (currentObra.audio && currentObra.audio.size) || '35 MB';
 
-    // Configurar pistas de capítulos
-    tracks = currentObra.audio.tracks || [];
+    // Configurar botón de descarga directa
+    if (dom.btnDownload && currentObra.audio && currentObra.audio.src) {
+      dom.btnDownload.href = currentObra.audio.src;
+      dom.btnDownload.setAttribute('download', currentObra.audio.downloadName || `${currentObra.title}_Audiolibro.mp3`);
+    }
+
+    // Configurar fuente de audio
+    if (currentObra.audio && currentObra.audio.src) {
+      audio.src = currentObra.audio.src;
+    }
+
+    // Configurar pistas / capítulos
+    tracks = (currentObra.audio && currentObra.audio.tracks) || [];
     renderTracklist();
 
-    // Restaurar posición guardada si existe
+    // Restaurar posición de escucha guardada si existe
     restoreSavedPosition();
 
-    // Iniciar intervalo de auto-guardado
+    // Intervalo de auto-guardado en LocalStorage
     if (saveInterval) clearInterval(saveInterval);
     saveInterval = setInterval(saveCurrentPosition, 3000);
   }
 
-  // Renderizar índice de capítulos
+  // Renderizar la lista de capítulos
   function renderTracklist() {
     if (!dom.tracklistGrid) return;
     dom.tracklistGrid.innerHTML = '';
-    
+
     if (dom.tracklistCount) {
       dom.tracklistCount.textContent = `${tracks.length} CAPÍTULOS`;
     }
 
     tracks.forEach((track, index) => {
-      const item = document.createElement('div');
-      item.className = `track-item ${index === 0 ? 'playing' : ''}`;
-      item.dataset.time = track.time;
-      item.dataset.index = index;
+      const card = document.createElement('div');
+      card.className = `track-item-card ${index === 0 ? 'is-active' : ''}`;
+      card.dataset.time = track.time;
+      card.dataset.index = index;
 
-      item.innerHTML = `
-        <div class="track-left">
-          <span class="track-num">${(index + 1).toString().padStart(2, '0')}</span>
-          <span class="track-name">${track.title}</span>
+      card.innerHTML = `
+        <div class="track-card-left">
+          <span class="track-index-num">${(index + 1).toString().padStart(2, '0')}</span>
+          <span class="track-title-text">${track.title}</span>
         </div>
-        <span class="track-time">${track.timeFormatted}</span>
+        <span class="track-time-stamp">${track.timeFormatted}</span>
       `;
 
-      item.addEventListener('click', () => {
+      card.addEventListener('click', () => {
         jumpToTrack(track.time, track.title, index);
       });
 
-      dom.tracklistGrid.appendChild(item);
+      dom.tracklistGrid.appendChild(card);
     });
 
-    if (tracks.length > 0) {
-      dom.activeChapterName.textContent = tracks[0].title;
+    if (tracks.length > 0 && dom.activeChapterName) {
+      dom.activeChapterName.textContent = `1. ${tracks[0].title}`;
     }
   }
 
   // Saltar a un capítulo específico
-  function jumpToTrack(time, title, index) {
-    audio.currentTime = time;
-    if (title) dom.activeChapterName.textContent = title;
+  function jumpToTrack(timeInSeconds, trackTitle, index) {
+    audio.currentTime = timeInSeconds;
+    if (trackTitle && dom.activeChapterName) {
+      dom.activeChapterName.textContent = `${(index + 1)}. ${trackTitle}`;
+    }
     highlightTrackItem(index);
-    audio.play().catch(e => console.log('Interacción requerida para reproducir:', e));
+    audio.play().catch(e => console.log('Interacción requerida por el navegador:', e));
   }
 
-  // Resaltar elemento de track activo
+  // Resaltar elemento visual de capítulo activo
   function highlightTrackItem(index) {
-    const items = dom.tracklistGrid.querySelectorAll('.track-item');
-    items.forEach((item, i) => {
+    if (!dom.tracklistGrid) return;
+    const cards = dom.tracklistGrid.querySelectorAll('.track-item-card');
+    cards.forEach((card, i) => {
       if (i === index) {
-        item.classList.add('playing');
+        card.classList.add('is-active');
       } else {
-        item.classList.remove('playing');
+        card.classList.remove('is-active');
       }
     });
   }
 
-  // Actualizar capítulo activo según tiempo de reproducción
+  // Actualizar capítulo activo según el segundo de reproducción
   function updateActiveChapterByTime(curTime) {
     if (!tracks || tracks.length === 0) return;
-    
+
     let activeIdx = 0;
     for (let i = 0; i < tracks.length; i++) {
       if (curTime >= tracks[i].time) {
@@ -217,47 +202,60 @@
     }
 
     highlightTrackItem(activeIdx);
-    if (tracks[activeIdx] && dom.activeChapterName.textContent !== tracks[activeIdx].title) {
-      dom.activeChapterName.textContent = tracks[activeIdx].title;
+    if (tracks[activeIdx] && dom.activeChapterName) {
+      const expectedText = `${activeIdx + 1}. ${tracks[activeIdx].title}`;
+      if (dom.activeChapterName.textContent !== expectedText) {
+        dom.activeChapterName.textContent = expectedText;
+      }
     }
   }
 
-  // Toggle Play / Pause
+  // Alternar Reproducir / Pausar
   function togglePlay() {
     if (audio.paused) {
       audio.play().then(() => {
-        dom.btnPlay.innerHTML = '⏸';
+        updatePlayButtonUI(true);
       }).catch(err => {
-        console.error('Error al reproducir audio:', err);
+        console.error('Error al reproducir:', err);
       });
     } else {
       audio.pause();
-      dom.btnPlay.innerHTML = '▶';
+      updatePlayButtonUI(false);
     }
   }
 
-  // Eventos de reproducción
-  audio.addEventListener('play', () => {
-    dom.btnPlay.innerHTML = '⏸';
-  });
+  function updatePlayButtonUI(isPlaying) {
+    if (!dom.playIcon || !dom.playText) return;
+    if (isPlaying) {
+      dom.playIcon.textContent = '⏸';
+      dom.playText.textContent = 'PAUSAR';
+      dom.btnPlay.style.background = 'linear-gradient(135deg, #fbbf24, #f59e0b)';
+    } else {
+      dom.playIcon.textContent = '▶';
+      dom.playText.textContent = 'REPRODUCIR';
+      dom.btnPlay.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+    }
+  }
 
-  audio.addEventListener('pause', () => {
-    dom.btnPlay.innerHTML = '▶';
-  });
+  // Eventos de Audio HTML5
+  audio.addEventListener('play', () => updatePlayButtonUI(true));
+  audio.addEventListener('pause', () => updatePlayButtonUI(false));
 
   audio.addEventListener('loadedmetadata', () => {
-    dom.timeDuration.textContent = formatTime(audio.duration);
+    if (dom.timeDuration) {
+      dom.timeDuration.textContent = formatTime(audio.duration);
+    }
   });
 
   audio.addEventListener('timeupdate', () => {
     if (isSeeking) return;
     const cur = audio.currentTime;
     const dur = audio.duration || 1;
-    const percent = (cur / dur) * 100;
-    
-    dom.scrubberFill.style.width = `${percent}%`;
-    dom.timeCurrent.textContent = formatTime(cur);
-    if (!isNaN(audio.duration)) {
+    const pct = (cur / dur) * 100;
+
+    if (dom.scrubberFill) dom.scrubberFill.style.width = `${pct}%`;
+    if (dom.timeCurrent) dom.timeCurrent.textContent = formatTime(cur);
+    if (dom.timeDuration && !isNaN(audio.duration)) {
       dom.timeDuration.textContent = formatTime(audio.duration);
     }
 
@@ -265,14 +263,15 @@
   });
 
   audio.addEventListener('ended', () => {
-    dom.btnPlay.innerHTML = '▶';
-    dom.scrubberFill.style.width = '0%';
-    localStorage.removeItem(`sapiensia_audiopos_${currentObraId}`);
+    updatePlayButtonUI(false);
+    if (dom.scrubberFill) dom.scrubberFill.style.width = '0%';
+    localStorage.removeItem(`sapiensia_audiopos_${obraKey}`);
   });
 
-  // Controles de avance / retroceso 15s
+  // Conectar botón Play/Pausa
   if (dom.btnPlay) dom.btnPlay.addEventListener('click', togglePlay);
-  
+
+  // Botones de salto -15s y +15s
   if (dom.btnRewind) {
     dom.btnRewind.addEventListener('click', () => {
       audio.currentTime = Math.max(0, audio.currentTime - 15);
@@ -281,18 +280,18 @@
 
   if (dom.btnForward) {
     dom.btnForward.addEventListener('click', () => {
-      audio.currentTime = Math.min(audio.duration || 99999, audio.currentTime + 15);
+      audio.currentTime = Math.min(audio.duration || 999999, audio.currentTime + 15);
     });
   }
 
-  // Scrubber interactivo (click y arrastre)
+  // Scrubber interactivo
   function seekToPosition(e) {
     const rect = dom.scrubberTrack.getBoundingClientRect();
     const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
     if (audio.duration) {
       audio.currentTime = pos * audio.duration;
-      dom.scrubberFill.style.width = `${pos * 100}%`;
-      dom.timeCurrent.textContent = formatTime(audio.currentTime);
+      if (dom.scrubberFill) dom.scrubberFill.style.width = `${pos * 100}%`;
+      if (dom.timeCurrent) dom.timeCurrent.textContent = formatTime(audio.currentTime);
     }
   }
 
@@ -302,11 +301,11 @@
     dom.scrubberTrack.addEventListener('mousedown', (e) => {
       isSeeking = true;
       seekToPosition(e);
-      
+
       const onMouseMove = (moveEvt) => {
         if (isSeeking) seekToPosition(moveEvt);
       };
-      
+
       const onMouseUp = () => {
         isSeeking = false;
         window.removeEventListener('mousemove', onMouseMove);
@@ -318,7 +317,7 @@
     });
   }
 
-  // Selectores de velocidad
+  // Selectores de Velocidad
   dom.speedButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       dom.speedButtons.forEach(b => b.classList.remove('active'));
@@ -328,7 +327,7 @@
     });
   });
 
-  // Control de volumen
+  // Control de Volumen
   if (dom.volumeSlider) {
     dom.volumeSlider.addEventListener('input', (e) => {
       audio.volume = parseFloat(e.target.value);
@@ -352,6 +351,7 @@
   }
 
   function updateVolumeIcon() {
+    if (!dom.btnVolume) return;
     if (audio.volume === 0) {
       dom.btnVolume.textContent = '🔇';
     } else if (audio.volume < 0.5) {
@@ -364,12 +364,12 @@
   // Guardar y restaurar posición en LocalStorage
   function saveCurrentPosition() {
     if (audio.currentTime > 5 && !audio.paused) {
-      localStorage.setItem(`sapiensia_audiopos_${currentObraId}`, audio.currentTime.toString());
+      localStorage.setItem(`sapiensia_audiopos_${obraKey}`, audio.currentTime.toString());
     }
   }
 
   function restoreSavedPosition() {
-    const saved = localStorage.getItem(`sapiensia_audiopos_${currentObraId}`);
+    const saved = localStorage.getItem(`sapiensia_audiopos_${obraKey}`);
     if (saved) {
       const pos = parseFloat(saved);
       if (!isNaN(pos) && pos > 0) {
@@ -381,18 +381,17 @@
 
   function showResumeToast(seconds) {
     const toast = document.createElement('div');
-    toast.className = 'resume-toast';
-    toast.innerHTML = `🎧 Reanudando audio en <strong>${formatTime(seconds)}</strong>`;
+    toast.className = 'resume-toast-popup';
+    toast.innerHTML = `🎧 Reanudando audiolibro en <strong>${formatTime(seconds)}</strong>`;
     document.body.appendChild(toast);
     setTimeout(() => {
       toast.style.opacity = '0';
       setTimeout(() => toast.remove(), 400);
-    }, 4000);
+    }, 4500);
   }
 
   // Atajos de teclado
   window.addEventListener('keydown', (e) => {
-    // Si no está en un input
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
     if (e.code === 'Space') {
@@ -403,16 +402,16 @@
       audio.currentTime = Math.max(0, audio.currentTime - 15);
     } else if (e.code === 'ArrowRight') {
       e.preventDefault();
-      audio.currentTime = Math.min(audio.duration || 99999, audio.currentTime + 15);
+      audio.currentTime = Math.min(audio.duration || 999999, audio.currentTime + 15);
     } else if (e.code === 'KeyM') {
       e.preventDefault();
       if (dom.btnVolume) dom.btnVolume.click();
     }
   });
 
-  // Guardar posición al salir de la página
+  // Guardar posición al cerrar la pestaña
   window.addEventListener('beforeunload', saveCurrentPosition);
 
-  // Inicializar al cargar el DOM
-  document.addEventListener('DOMContentLoaded', initObra);
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', initPlayer);
 })();

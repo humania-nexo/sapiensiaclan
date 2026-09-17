@@ -1,43 +1,75 @@
 /* ==========================================================================
-   SAPIENSIA CLAN — REPRODUCTOR WEB DE AUDIOLIBROS INMERSIVO
-   Archivo: css/audio.css
-   Descripción: Estilos de alta gama para la escucha editorial de SAPIENSIA.
+   SAPIENSIA CLAN — REPRODUCTOR WEB DE AUDIOLIBROS (CSS/AUDIO.CSS V2.0)
+   Descripción: Interfaz oscura de alto contraste, legible y sin resplandor cegador.
    ========================================================================== */
 
-@import url('variables.css');
-@import url('base.css');
-@import url('aurora_particles.css');
-
-/* --- LAYOUT GENERAL DEL REPRODUCTOR --- */
-body {
+/* --- CUERPO Y FONDO OSCURO SÓLIDO --- */
+.audio-body {
+  background-color: #08080a !important;
+  color: #f4f4f5 !important;
+  font-family: var(--font-sans);
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-deep);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
   overflow-x: hidden;
+  position: relative;
 }
 
-/* --- CABECERA SUPERIOR GLASS --- */
-.audio-header {
+/* Control del resplandor de la aurora (Atenuado y bajo control) */
+.audio-aurora {
+  opacity: 0.18 !important;
+  filter: blur(140px);
+  z-index: -2;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* --- NAVEGACIÓN SUPERIOR --- */
+.audio-navbar {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-glass);
-  padding: 14px 24px;
+  z-index: 100;
+  background: rgba(8, 8, 10, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
 }
 
-.audio-header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+.obra-switcher-tabs {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tab-btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tab-btn.active {
+  background: var(--amber-primary);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
 }
 
 .btn-back-clan, .btn-switch-reader {
@@ -47,7 +79,7 @@ body {
   padding: 8px 16px;
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-glass);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -57,131 +89,153 @@ body {
 }
 
 .btn-back-clan:hover, .btn-switch-reader:hover {
-  background: rgba(245, 158, 11, 0.12);
+  background: rgba(245, 158, 11, 0.15);
   border-color: var(--amber-primary);
   color: var(--amber-glow);
 }
 
-.audio-header-title {
-  font-family: var(--font-serif-title);
-  font-size: 1.1rem;
-  color: #fff;
-  letter-spacing: 0.05em;
-  text-align: center;
-}
-
-.audio-header-title span {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--amber-primary);
-  display: block;
-  letter-spacing: 0.1em;
-}
-
 /* --- CONTENEDOR PRINCIPAL --- */
-.audio-main {
+.audio-container {
   flex: 1;
-  max-width: 1100px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 40px 24px 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
+  padding: 32px 24px 80px;
   position: relative;
   z-index: 10;
 }
 
-/* --- HERO DEL AUDIOLIBRO --- */
-.audio-player-hero {
+/* --- TARJETA PRINCIPAL DEL REPRODUCTOR (DARK GLASS DE ALTO CONTRASTE) --- */
+.player-card {
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 40px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-glass);
+  background: #0e0f14;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
   padding: 36px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  align-items: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.6);
   position: relative;
-  overflow: hidden;
 }
 
-.audio-player-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--amber-primary), transparent);
-}
-
-@media (max-width: 860px) {
-  .audio-player-hero {
+@media (max-width: 900px) {
+  .player-card {
     grid-template-columns: 1fr;
-    text-align: center;
     padding: 24px;
-    gap: 28px;
+    gap: 32px;
   }
 }
 
-/* --- PORTADA FLOTANTE & EFECTO VINILO / ONDAS --- */
-.audio-cover-wrapper {
-  position: relative;
+/* --- BARRA LATERAL (PORTADA & METADATOS) --- */
+.player-sidebar {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.audio-cover-box {
-  width: 100%;
-  max-width: 280px;
+.player-cover-wrap {
+  position: relative;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.audio-cover-img {
+.player-cover-img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.5s ease;
+  object-fit: cover;
 }
 
-.audio-cover-badge {
+.player-cover-badge {
   position: absolute;
-  bottom: 12px;
-  left: 12px;
-  background: rgba(8, 8, 10, 0.88);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-glass);
+  bottom: 10px;
+  left: 10px;
+  background: rgba(8, 8, 10, 0.9);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: var(--amber-glow);
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--amber-glow);
-  padding: 4px 10px;
+  font-weight: 700;
+  padding: 4px 8px;
   border-radius: 4px;
+  letter-spacing: 0.08em;
 }
 
-/* --- DETALLES DE LA OBRA --- */
-.audio-details {
+.sidebar-meta-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-.audio-badge-live {
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.meta-label {
+  color: var(--text-muted);
+}
+
+.meta-val {
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-download-full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn-download-full:hover {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: var(--amber-primary);
+  color: var(--amber-glow);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+/* --- CONTENIDO PRINCIPAL DEL REPRODUCTOR --- */
+.player-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.book-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.badge-status-live {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   align-self: flex-start;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--amber-glow);
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid rgba(245, 158, 11, 0.3);
@@ -190,35 +244,15 @@ body {
   letter-spacing: 0.08em;
 }
 
-@media (max-width: 860px) {
-  .audio-badge-live {
-    align-self: center;
-  }
-}
-
-.audio-live-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--amber-primary);
-  box-shadow: 0 0 10px var(--amber-glow);
-  animation: pulse-dot 2s infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.6; }
-}
-
-.audio-book-title {
+.book-main-title {
   font-family: var(--font-serif-title);
   font-size: 2.2rem;
-  color: #fff;
+  color: #ffffff;
   line-height: 1.15;
   margin: 0;
 }
 
-.audio-book-subtitle {
+.book-main-subtitle {
   font-family: var(--font-serif-body);
   font-style: italic;
   font-size: 1.15rem;
@@ -226,175 +260,193 @@ body {
   margin: 0;
 }
 
-.audio-book-author {
+.book-author-line {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
 }
 
-@media (max-width: 860px) {
-  .audio-book-author {
-    justify-content: center;
-  }
-}
-
-.audio-author-highlight {
+.author-gold {
   color: var(--amber-primary);
+  font-weight: 600;
 }
 
-.audio-active-chapter-name {
-  margin-top: 8px;
+/* Caja de "Reproduciendo Ahora" */
+.now-playing-box {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-left: 4px solid var(--amber-primary);
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.now-playing-tag {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.04);
-  border-left: 3px solid var(--amber-primary);
-  padding: 8px 14px;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.68rem;
+  color: var(--amber-glow);
+  letter-spacing: 0.1em;
+  font-weight: 700;
 }
 
-/* --- CONTROLES DE REPRODUCCIÓN PRINCIPALES --- */
-.audio-controls-panel {
+.now-playing-title {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* --- PANEL DE MANDOS DE AUDIO (DECK) --- */
+.audio-control-deck {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 14px;
+  gap: 22px;
 }
 
-/* --- BARRA DE PROGRESO / TIMELINE --- */
-.audio-timeline-wrap {
+/* Scrubber / Barra de Tiempo */
+.scrubber-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
-.audio-scrubber-track {
+.scrubber-track {
   position: relative;
   width: 100%;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-  cursor: pointer;
-  overflow: hidden;
-  transition: height 0.15s ease;
-}
-
-.audio-scrubber-track:hover {
   height: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.audio-scrubber-fill {
+.scrubber-fill {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--amber-primary), var(--amber-glow));
-  border-radius: 4px;
-  box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
-  transition: width 0.1s linear;
+  background: linear-gradient(90deg, #d97706, #fbbf24);
+  border-radius: 5px;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+  pointer-events: none;
 }
 
-.audio-time-row {
+.time-display-row {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
-/* --- BOTONES DE MANDO (PLAY, REWIND, FORWARD) --- */
-.audio-buttons-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+.time-text {
+  font-weight: 600;
+  color: #d4d4d8;
 }
 
-.btn-audio-step {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-glass);
-  color: var(--text-primary);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+/* Mando Central de Botones (PLAY, REWIND, FORWARD) */
+.playback-buttons-bar {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
+}
+
+.btn-step-time {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 24px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.btn-audio-step:hover {
-  background: rgba(245, 158, 11, 0.15);
+.btn-step-time:hover {
+  background: rgba(245, 158, 11, 0.18);
   border-color: var(--amber-primary);
   color: var(--amber-glow);
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
-.btn-audio-play {
-  background: linear-gradient(135deg, var(--amber-primary), #d97706);
+.btn-main-play {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #000;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
   border: none;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 14px 32px;
+  border-radius: 30px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  cursor: pointer;
+  gap: 10px;
   box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.2s ease;
 }
 
-.btn-audio-play:hover {
-  transform: scale(1.1);
+.btn-main-play:hover {
+  transform: scale(1.06);
   box-shadow: 0 0 35px rgba(245, 158, 11, 0.8);
 }
 
-.btn-audio-play:active {
-  transform: scale(0.95);
+.btn-main-play:active {
+  transform: scale(0.96);
 }
 
-/* --- FILA DE HERRAMIENTAS SECUNDARIAS (VELOCIDAD, VOLUMEN, DESCARGA) --- */
-.audio-tools-row {
+.play-icon {
+  font-size: 1.2rem;
+}
+
+/* Fila de Herramientas (Velocidad y Volumen) */
+.audio-tools-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
   padding-top: 14px;
-  border-top: 1px solid var(--border-glass);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@media (max-width: 860px) {
-  .audio-tools-row {
-    justify-content: center;
-  }
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Selector de velocidad */
-.speed-selector-group {
+.tool-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.speed-btn-cluster {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 3px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border-glass);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .btn-speed {
   background: transparent;
   border: none;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
@@ -404,253 +456,185 @@ body {
   transition: all 0.15s ease;
 }
 
-.btn-speed.active, .btn-speed:hover {
-  background: rgba(245, 158, 11, 0.2);
+.btn-speed:hover, .btn-speed.active {
+  background: rgba(245, 158, 11, 0.25);
   color: var(--amber-glow);
+  font-weight: 700;
 }
 
-/* Control de volumen */
-.volume-control-group {
+.volume-slider-wrap {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.btn-volume-icon {
+.btn-vol-icon {
   background: transparent;
   border: none;
   font-size: 1rem;
   cursor: pointer;
-  color: var(--text-secondary);
+  color: #fff;
 }
 
-.volume-slider {
+.vol-range {
   -webkit-appearance: none;
   appearance: none;
-  width: 80px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 2px;
+  width: 90px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
   outline: none;
   cursor: pointer;
 }
 
-.volume-slider::-webkit-slider-thumb {
+.vol-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--amber-primary);
   cursor: pointer;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
 }
 
-/* Botón de descarga directa */
-.btn-download-mp3 {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-glass);
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s ease;
+/* --- TRACKLIST / ÍNDICE DE CAPÍTULOS --- */
+.tracklist-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.btn-download-mp3:hover {
-  background: rgba(245, 158, 11, 0.15);
-  border-color: var(--amber-primary);
-  color: var(--amber-glow);
-}
-
-/* --- TRACKLIST / ÍNDICE DE CAPÍTULOS DE AUDIO --- */
-.audio-tracklist-section {
-  background: var(--bg-card);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-md);
-  padding: 32px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-.tracklist-header {
+.tracklist-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.tracklist-title {
+.tracklist-header-title {
   font-family: var(--font-serif-title);
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   color: #fff;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  margin: 0;
 }
 
-.tracklist-count {
+.tracklist-badge {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: var(--amber-primary);
+  font-weight: 700;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 3px 8px;
+  border-radius: 4px;
 }
 
-.tracklist-grid {
+.tracklist-scroll-area {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
-.track-item {
+/* Scrollbar personalizada */
+.tracklist-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.tracklist-scroll-area::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+.tracklist-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.4);
+  border-radius: 3px;
+}
+
+.track-item-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 10px 14px;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border-glass);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: var(--font-sans);
 }
 
-.track-item:hover {
-  background: rgba(245, 158, 11, 0.08);
+.track-item-card:hover {
+  background: rgba(245, 158, 11, 0.1);
   border-color: rgba(245, 158, 11, 0.4);
   transform: translateX(4px);
 }
 
-.track-item.playing {
-  background: rgba(245, 158, 11, 0.15);
+.track-item-card.is-active {
+  background: rgba(245, 158, 11, 0.18);
   border-color: var(--amber-primary);
   box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
 }
 
-.track-left {
+.track-card-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   overflow: hidden;
 }
 
-.track-num {
+.track-index-num {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--amber-primary);
-  min-width: 24px;
+  font-weight: 700;
+  min-width: 20px;
 }
 
-.track-name {
-  font-size: 0.9rem;
-  color: var(--text-primary);
+.track-title-text {
+  font-size: 0.88rem;
+  color: #e4e4e7;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.track-item.playing .track-name {
+.track-item-card.is-active .track-title-text {
   color: var(--amber-glow);
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.track-time {
+.track-time-stamp {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
-}
-
-/* --- ESTADO ESPECIAL: VELA (EN GRABACIÓN) --- */
-.vela-recording-box {
-  background: radial-gradient(circle at center, rgba(14, 165, 233, 0.08) 0%, rgba(8, 8, 10, 0.9) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  border-radius: var(--radius-md);
-  padding: 48px 32px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  box-shadow: 0 0 40px rgba(56, 189, 248, 0.1);
-}
-
-.dharma-radar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 2px solid #38bdf8;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-}
-
-.dharma-radar::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 1px dashed rgba(56, 189, 248, 0.6);
-  animation: rotate-radar 10s linear infinite;
-}
-
-@keyframes rotate-radar {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.dharma-status-badge {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
-  padding: 6px 16px;
-  border-radius: 20px;
-  border: 1px solid rgba(56, 189, 248, 0.4);
-}
-
-.dharma-quote {
-  font-family: var(--font-serif-body);
-  font-style: italic;
-  font-size: 1.25rem;
-  color: #e2e8f0;
-  max-width: 680px;
-  line-height: 1.6;
-}
-
-.dharma-msg {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  max-width: 600px;
+  font-weight: 600;
 }
 
 /* Toast de reanudación */
-.resume-toast {
+.resume-toast-popup {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  background: rgba(8, 8, 10, 0.95);
+  background: #0e0f14;
   border: 1px solid var(--amber-primary);
-  padding: 12px 20px;
+  padding: 14px 22px;
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--amber-glow);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.8);
-  z-index: 100;
-  animation: fade-in-up 0.4s ease;
+  font-size: 0.85rem;
+  color: #ffffff;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slide-up-toast 0.35s ease;
 }
 
-@keyframes fade-in-up {
+@keyframes slide-up-toast {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
