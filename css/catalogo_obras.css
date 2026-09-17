@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    SAPIENSIA CLAN — MÓDULO 7: CATÁLOGO DE OBRAS & VIDEOJUEGOS
    Archivo: css/catalogo_obras.css
    Descripción: Tarjetas de libros, portada de UPROTA, insignias y botones de lectura.
@@ -61,13 +61,14 @@
   filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.5));
 }
 
-/* --- INSIGNIA FLOTANTE SOBRE PORTADA --- */
+/* --- INSIGNIA FLOTANTE EN LA PARTE INFERIOR DE LA PORTADA --- */
 .obra-badge-float {
   position: absolute;
-  top: 12px;
+  bottom: 12px;
   left: 12px;
-  background: rgba(8, 8, 10, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(8, 8, 10, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-glass);
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -75,6 +76,8 @@
   color: var(--amber-glow);
   padding: 4px 10px;
   border-radius: 4px;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .badge-game {
