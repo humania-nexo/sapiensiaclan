@@ -1010,18 +1010,29 @@ body {
 
 .footer-left {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 540px;
+}
+
+.footer-quote {
+  font-family: var(--font-serif-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--amber-glow);
+  opacity: 0.88;
+  line-height: 1.45;
 }
 
 .footer-logo {
   width: 34px;
   height: 34px;
   image-rendering: pixelated;
+  margin-bottom: 4px;
 }
 
 .footer-copy {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   line-height: 1.5;
 }
