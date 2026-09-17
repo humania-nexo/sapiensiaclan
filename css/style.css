@@ -602,6 +602,86 @@ body {
   line-height: 1.55;
 }
 
+/* COLABORADORES & RED DE ENLACE EXTERNA */
+.colaboradores-wrapper {
+  margin-top: 56px;
+  padding-top: 42px;
+  border-top: 1px dashed rgba(245, 158, 11, 0.2);
+}
+
+.colaboradores-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.colaboradores-title {
+  font-family: var(--font-serif-title);
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.colaboradores-sub {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.colaboradores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.colaborador-card {
+  border: 1px solid rgba(245, 158, 11, 0.18);
+  background: rgba(14, 16, 24, 0.65);
+}
+
+.avatar-placeholder-box {
+  border: 1px dashed rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.04);
+}
+
+.avatar-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.avatar-placeholder-glyph {
+  font-size: 1.3rem;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+}
+
+.avatar-placeholder-tag {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--amber-glow);
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.role-colab-lit {
+  color: #e0e7ff;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  font-size: 0.62rem;
+}
+
+.role-colab-tech {
+  color: #ccfbf1;
+  background: rgba(20, 184, 166, 0.15);
+  border: 1px solid rgba(20, 184, 166, 0.35);
+  font-size: 0.62rem;
+}
+
 /* 9. CATÁLOGO DE OBRAS */
 .catalogo-grid {
   display: flex;
