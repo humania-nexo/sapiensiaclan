@@ -1,0 +1,170 @@
+﻿/* ==========================================================================
+   SAPIENSIA CLAN — MÓDULO 7: CATÁLOGO DE OBRAS & VIDEOJUEGOS
+   Archivo: css/catalogo_obras.css
+   Descripción: Tarjetas de libros, portada de UPROTA, insignias y botones de lectura.
+   ========================================================================== */
+
+/* --- CUADRÍCULA VERTICAL DE OBRAS --- */
+.catalogo-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.obra-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
+  padding: 32px;
+  align-items: center;
+}
+
+@media (max-width: 820px) {
+  .obra-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- CONTENEDOR DE PORTADA CON SOMBRA FLOTANTE --- */
+.obra-cover-box {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--border-glass);
+}
+
+.obra-cover-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.obra-card:hover .obra-cover-img {
+  transform: scale(1.03);
+}
+
+/* --- RECUADRO PARA UPROTA EN ESPERA DE PORTADA VERTICAL --- */
+.uprota-banner-box {
+  min-height: 320px;
+  background: radial-gradient(circle at center, #1e1b18 0%, #0c0b0a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uprota-inner-logo {
+  width: 120px;
+  height: 120px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.5));
+}
+
+/* --- INSIGNIA FLOTANTE SOBRE PORTADA --- */
+.obra-badge-float {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(8, 8, 10, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-glass);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--amber-glow);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.badge-game {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+/* --- INFORMACIÓN DE LA OBRA --- */
+.obra-title {
+  font-family: var(--font-serif-title);
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.obra-subtitle-tag {
+  font-family: var(--font-serif-body);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--amber-glow);
+  margin-bottom: 8px;
+}
+
+.obra-author {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.obra-author span {
+  color: var(--amber-primary);
+}
+
+.obra-synopsis {
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+/* --- METADATOS Y CHIPS --- */
+.obra-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.meta-chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* --- BOTONES DE ACCIÓN DE CATÁLOGO --- */
+.btn-card-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid var(--amber-primary);
+  color: var(--amber-glow);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-card-primary:hover {
+  background: var(--amber-primary);
+  color: #000;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+}
+
+.btn-play {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+  border-color: var(--amber-glow);
+}
+
+.btn-play:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}

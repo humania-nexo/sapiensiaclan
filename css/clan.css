@@ -1,0 +1,160 @@
+﻿/* ==========================================================================
+   SAPIENSIA CLAN — MÓDULO 6: EL HEXÁGONO DEL CLAN & RED DE COLABORACIÓN
+   Archivo: css/clan.css
+   Descripción: Tarjetas de miembros, avatares animados, insignias y nodos externos.
+   ========================================================================== */
+
+/* --- CUADRÍCULA PRINCIPAL DE MIEMBROS (HEXÁGONO) --- */
+.clan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.clan-card {
+  padding: 28px 22px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- CAJETÍN DEL AVATAR ANIMADO --- */
+.avatar-box {
+  width: 72px;
+  height: 72px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clan-card:hover .avatar-box {
+  transform: translateY(-2px);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
+}
+
+.clan-avatar {
+  width: 48px;
+  height: 48px;
+  image-rendering: pixelated;
+}
+
+.clan-name {
+  font-family: var(--font-serif-title);
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+/* --- INSIGNIAS DE ROL DEL CLAN --- */
+.clan-role {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.role-director { color: #f59e0b; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); }
+.role-ing      { color: #38bdf8; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); }
+.role-art      { color: #ec4899; background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(236, 72, 153, 0.3); }
+.role-lore     { color: #a855f7; background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.3); }
+.role-sound    { color: #10b981; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); }
+.role-comm     { color: #fb923c; background: rgba(251, 146, 60, 0.12); border: 1px solid rgba(251, 146, 60, 0.3); }
+
+.clan-desc {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* --- SUBSECCIÓN: RED DE COAUTORÍA & CONSULTORÍA EXTERNA --- */
+.colaboradores-wrapper {
+  margin-top: 56px;
+  padding-top: 42px;
+  border-top: 1px dashed rgba(245, 158, 11, 0.2);
+}
+
+.colaboradores-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.colaboradores-title {
+  font-family: var(--font-serif-title);
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.colaboradores-sub {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.colaboradores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.colaborador-card {
+  border: 1px solid rgba(245, 158, 11, 0.18);
+  background: rgba(14, 16, 24, 0.65);
+}
+
+/* --- CAJETÍN DE AVATAR EN ESPERA ("EN FORJA") --- */
+.avatar-placeholder-box {
+  border: 1px dashed rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.04);
+}
+
+.avatar-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.avatar-placeholder-glyph {
+  font-size: 1.3rem;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+}
+
+.avatar-placeholder-tag {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--amber-glow);
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.role-colab-lit {
+  color: #e0e7ff;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  font-size: 0.62rem;
+}
+
+.role-colab-tech {
+  color: #ccfbf1;
+  background: rgba(20, 184, 166, 0.15);
+  border: 1px solid rgba(20, 184, 166, 0.35);
+  font-size: 0.62rem;
+}

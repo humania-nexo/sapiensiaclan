@@ -1,0 +1,155 @@
+﻿/* ==========================================================================
+   SAPIENSIA CLAN — MÓDULO 2: BASE, TIPOGRAFÍA & UTILIDADES PIXEL ART
+   Archivo: css/base.css
+   Descripción: Reseteo CSS universal, configuración del cuerpo y renderizado de sprites.
+   ========================================================================== */
+
+/* --- RESETEO UNIVERSAL --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+/* --- CUERPO PRINCIPAL --- */
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- CONTENEDORES DE SECCIÓN ESTÁNDAR --- */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 90px 24px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 54px;
+}
+
+.section-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--amber-primary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-serif-title);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gold-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber-primary), transparent);
+  margin: 18px auto 0;
+}
+
+/* --- CONTENEDOR GLASS BASE --- */
+.card-glass {
+  position: relative;
+  background: var(--bg-card);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* --- SPOTLIGHT REACTIVO AL CURSOR (CURSOR TRACKING) --- */
+.spotlight-card {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  isolation: isolate;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    380px circle at var(--mouse-x) var(--mouse-y),
+    rgba(245, 158, 11, 0.75),
+    rgba(99, 102, 241, 0.2) 40%,
+    rgba(255, 255, 255, 0.03) 70%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    450px circle at var(--mouse-x) var(--mouse-y),
+    rgba(245, 158, 11, 0.04),
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- CLASES DE RENDERIZADO PIXEL ART (PIX SPRITES) --- */
+.pixel-icon-inline {
+  width: 18px;
+  height: 18px;
+  image-rendering: pixelated;
+  vertical-align: -3px;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.pixel-icon-lg {
+  width: 44px;
+  height: 44px;
+  image-rendering: pixelated;
+  display: inline-block;
+  filter: drop-shadow(0 4px 12px rgba(245, 158, 11, 0.3));
+  transition: transform 0.2s ease;
+}
+
+.card-glass:hover .pixel-icon-lg {
+  transform: scale(1.1);
+}
+
+.pixel-icon-badge {
+  width: 15px;
+  height: 15px;
+  image-rendering: pixelated;
+  vertical-align: -2px;
+  margin-right: 6px;
+  display: inline-block;
+}

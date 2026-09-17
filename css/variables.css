@@ -1,0 +1,43 @@
+﻿/* ==========================================================================
+   SAPIENSIA CLAN — MÓDULO 1: VARIABLES GLOBALES & DESIGN TOKENS
+   Archivo: css/variables.css
+   Descripción: Definición centralizada de colores, fuentes, sombras y radios.
+   ========================================================================== */
+
+:root {
+  /* --- COLORES DE FONDO & SUPERFICIES (DARK SCI-FI) --- */
+  --bg-dark: #08080a;                    /* Fondo negro carbón profundo */
+  --bg-card: rgba(14, 15, 20, 0.72);     /* Superficie base para tarjetas glass */
+  --bg-card-hover: rgba(22, 24, 32, 0.85);/* Superficie activa al interactuar */
+  
+  /* --- PALETA ÁMBAR SAPIENSIA (IDENTIDAD PRINCIPAL) --- */
+  --amber-primary: #f59e0b;              /* Ámbar dorado principal */
+  --amber-glow: #fbbf24;                 /* Brillo dorado en crestas e iluminaciones */
+  --amber-deep: #d97706;                 /* Ámbar oscuro para botones y gradientes */
+  --amber-subtle: rgba(245, 158, 11, 0.12); /* Acento suave para fondos y pastillas */
+  
+  /* --- ACENTOS SECUNDARIOS & TRANSMEDIA --- */
+  --cyan-accent: #38bdf8;                /* Cian cibernético / Universo Proiectio */
+  --indigo-accent: #6366f1;              /* Índigo místico / Consciencia Dharma */
+  --emerald-accent: #10b981;             /* Verde esmeralda para estados de éxito */
+  
+  /* --- TIPOGRAFÍA & CONTRASTES DE TEXTO --- */
+  --text-primary: #f4f4f5;               /* Blanco suave de alta legibilidad */
+  --text-secondary: #a1a1aa;             /* Gris claro para párrafos y descripciones */
+  --text-muted: #71717a;                 /* Gris atenuado para metadatos y pies */
+  
+  /* --- BORDES & CRISTALERÍA GLASSMORPHISM --- */
+  --border-glass: rgba(255, 255, 255, 0.08);    /* Borde sutil de cristal */
+  --border-glass-hover: rgba(245, 158, 11, 0.4); /* Resaltado ámbar en hover */
+  
+  /* --- FAMILIAS TIPOGRÁFICAS --- */
+  --font-serif-title: 'Cinzel', 'Instrument Serif', Georgia, serif; /* Títulos épicos */
+  --font-serif-body: 'Instrument Serif', Georgia, serif;            /* Subtítulos poéticos */
+  --font-mono: 'JetBrains Mono', monospace;                         /* Metadatos y terminal */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;      /* Lectura general limpia */
+  
+  /* --- RADIOS DE CURVATURA --- */
+  --radius-sm: 8px;   /* Botones y chips */
+  --radius-md: 16px;  /* Tarjetas estándar */
+  --radius-lg: 24px;  /* Contenedores mayores */
+}

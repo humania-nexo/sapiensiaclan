@@ -1,0 +1,97 @@
+﻿/**
+ * ==========================================================================
+ * SAPIENSIA CLAN — MÓDULO JS: MICROINTERACCIONES & UI INTERACTIVA
+ * Archivo: js/interactive_ui.js
+ * Descripción: Spotlight reactivo al cursor, 3D Tilt y gestor de portapapeles.
+ * Autor: Nexo (Ingeniero Principal)
+ * ==========================================================================
+ */
+
+/**
+ * 1. SPOTLIGHT REACTIVO (SEGUIMIENTO DE CURSOR EN TARJETAS GLASS)
+ * Actualiza las variables CSS --mouse-x y --mouse-y para iluminar el borde y fondo.
+ */
+function initSpotlightCards() {
+  const cards = document.querySelectorAll('.spotlight-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    }, { passive: true });
+  });
+}
+
+/**
+ * 2. 3D TILT SUAVE (MICROINTERACCIÓN CINEMÁTICA EN TARJETAS DEL CLAN)
+ * Calcula la rotación en los ejes X e Y según la posición relativa del cursor.
+ */
+function initTiltCards() {
+  const tiltCards = document.querySelectorAll('.tilt-card');
+  tiltCards.forEach(card => {
+    let bounds = null;
+
+    card.addEventListener('mouseenter', () => {
+      bounds = card.getBoundingClientRect();
+      card.style.transition = 'transform 0.1s ease-out, box-shadow 0.25s ease-out';
+    }, { passive: true });
+
+    card.addEventListener('mousemove', (e) => {
+      if (!bounds) bounds = card.getBoundingClientRect();
+      const x = e.clientX - bounds.left;
+      const y = e.clientY - bounds.top;
+      const px = (x / bounds.width) * 2 - 1;
+      const py = (y / bounds.height) * 2 - 1;
+
+      const rotX = -py * 7;
+      const rotY = px * 7;
+
+      card.style.transform = `perspective(800px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px)`;
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+      card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    }, { passive: true });
+  });
+}
+
+/**
+ * 3. COPIAR BINANCE ID AL PORTAPAPELES
+ * Proporciona confirmación visual y sonora al usuario al copiar el código de mecenazgo.
+ */
+function initCopyBinance() {
+  const btn = document.getElementById('btn-copiar-id');
+  const copyText = document.getElementById('copy-text');
+  const copyIcon = document.getElementById('copy-icon');
+
+  if (!btn) return;
+
+  btn.addEventListener('click', async () => {
+    const id = '35863102';
+    try {
+      await navigator.clipboard.writeText(id);
+      // Feedback sonoro (Acorde ámbar de Hertz)
+      if (window.clanAudio) window.clanAudio.playAmberSuccess();
+      
+      // Feedback visual
+      copyIcon.innerHTML = '<img src="assets/emojis/emoji_simbolo_check.png" class="pixel-icon-inline" alt="Check">';
+      copyText.textContent = '¡Binance ID Copiado!';
+      btn.style.borderColor = '#10b981';
+      btn.style.color = '#10b981';
+
+      // Restaurar estado tras 2.5 segundos
+      setTimeout(() => {
+        copyIcon.innerHTML = '<img src="assets/emojis/emoji_pergamino.png" class="pixel-icon-inline" alt="Copiar">';
+        copyText.textContent = `Copiar Binance ID (${id})`;
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 2500);
+    } catch (err) {
+      // Fallback para navegadores que bloqueen clipboard API
+      prompt('Copia manualmente el Binance ID:', id);
+    }
+  });
+}

@@ -1,0 +1,115 @@
+﻿/* ==========================================================================
+   SAPIENSIA CLAN — MÓDULO 9: CONTACTO & PIE DE PÁGINA EDITORIAL
+   Archivo: css/footer.css
+   Descripción: Tarjeta de contacto directo, aforismos de cierre y copyright.
+   ========================================================================== */
+
+/* --- TARJETA DE CONTACTO DIRECTO --- */
+.contact-card {
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.contact-title {
+  font-family: var(--font-serif-title);
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.contact-sub {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.btn-email-direct {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-email-direct:hover {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: var(--amber-primary);
+  color: var(--amber-glow);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+}
+
+.contact-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 18px;
+}
+
+/* --- FOOTER GLASSMORPHISM --- */
+.footer-glass {
+  border-top: 1px solid var(--border-glass);
+  padding: 40px 24px;
+  background: rgba(8, 8, 10, 0.85);
+  backdrop-filter: blur(16px);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 540px;
+}
+
+.footer-quote {
+  font-family: var(--font-serif-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--amber-glow);
+  opacity: 0.88;
+  line-height: 1.45;
+}
+
+.footer-logo {
+  width: 34px;
+  height: 34px;
+  image-rendering: pixelated;
+  margin-bottom: 4px;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.footer-right {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-right a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.footer-right a:hover {
+  color: var(--amber-glow);
+}

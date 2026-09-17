@@ -1,0 +1,105 @@
+﻿/* ==========================================================================
+   SAPIENSIA CLAN — MÓDULO 5: EL MANIFIESTO & FILOSOFÍA DEL SALMÓN
+   Archivo: css/manifiesto.css
+   Descripción: Banner animado en pixel art, cuadrícula del manifiesto y fórmulas.
+   ========================================================================== */
+
+/* --- BANNER CINEMÁTICO DEL SALMÓN (PIX) --- */
+.manifiesto-banner-wrap {
+  margin: 0 auto 36px auto;
+  max-width: 720px;
+  text-align: center;
+  position: relative;
+}
+
+.manifiesto-pixel-banner {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.15);
+  image-rendering: pixelated;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.manifiesto-pixel-banner:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(245, 158, 11, 0.3);
+}
+
+.manifiesto-banner-caption {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--amber-glow);
+  opacity: 0.85;
+}
+
+/* --- CUADRÍCULA DE PILARES FILOSÓFICOS --- */
+.manifiesto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.manifiesto-card {
+  padding: 36px 30px;
+}
+
+.manifiesto-icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+}
+
+.card-heading {
+  font-family: var(--font-serif-title);
+  font-size: 1.45rem;
+  color: #fff;
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+
+.manifiesto-text {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.manifiesto-text strong {
+  color: #fff;
+}
+
+/* --- RECUADRO DE FÓRMULA CONCEPTUAL --- */
+.formula-box {
+  background: rgba(245, 158, 11, 0.06);
+  border-left: 3px solid var(--amber-primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 18px 0;
+}
+
+.formula-part {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.formula-divider {
+  display: block;
+  color: var(--amber-primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.manifiesto-text-sm {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
