@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. BOTÓN COPIAR BINANCE ID
   initCopyBinance();
+
+  // 5. MICROINTERACCIONES DE AUDIO PROCEDURAL (HERTZ 0 KB)
+  initAudioInteractions();
 });
 
 /* ==========================================================================
@@ -192,6 +195,7 @@ function initCopyBinance() {
     const id = '35863102';
     try {
       await navigator.clipboard.writeText(id);
+      if (window.clanAudio) window.clanAudio.playAmberSuccess();
       copyIcon.innerHTML = '<img src="assets/emojis/emoji_simbolo_check.png" class="pixel-icon-inline" alt="Check">';
       copyText.textContent = '¡Binance ID Copiado!';
       btn.style.borderColor = '#10b981';
@@ -206,5 +210,58 @@ function initCopyBinance() {
     } catch (err) {
       prompt('Copia manualmente el Binance ID:', id);
     }
+  });
+}
+
+/* ==========================================================================
+   5. MICRO-INTERACCIONES SONORAS PROCEDURALES (HERTZ 0 KB)
+   ========================================================================== */
+function initAudioInteractions() {
+  // Inicialización de audio en el primer gesto de usuario
+  const unlockAudio = () => {
+    if (window.clanAudio) {
+      window.clanAudio.ensureContext();
+    }
+    window.removeEventListener('pointerdown', unlockAudio);
+    window.removeEventListener('keydown', unlockAudio);
+  };
+  window.addEventListener('pointerdown', unlockAudio, { passive: true });
+  window.addEventListener('keydown', unlockAudio, { passive: true });
+
+  // Botón Mute / Unmute en Navbar
+  const soundBtn = document.getElementById('btn-sound-toggle');
+  const soundLabel = document.getElementById('sound-toggle-label');
+
+  if (soundBtn) {
+    // Sincronizar estado inicial
+    const isMuted = localStorage.getItem('sapiensia_audio_muted') === 'true';
+    if (isMuted) {
+      soundBtn.classList.add('is-muted');
+      if (soundLabel) soundLabel.textContent = 'FX: OFF';
+    }
+
+    soundBtn.addEventListener('click', () => {
+      if (window.clanAudio) {
+        const muted = window.clanAudio.toggleMute();
+        soundBtn.classList.toggle('is-muted', muted);
+        if (soundLabel) soundLabel.textContent = muted ? 'FX: OFF' : 'FX: ON';
+      }
+    });
+  }
+
+  // Hover interactivo suave en botones y cards principales
+  const hoverTargets = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-item, .card-glass, .clan-card, .obra-card, .btn-sound-glass, .btn-email-direct');
+  hoverTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      if (window.clanAudio) window.clanAudio.playHover();
+    }, { passive: true });
+  });
+
+  // Click háptico sutil en elementos interactivos
+  const clickTargets = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-item, .btn-sound-glass, .btn-email-direct');
+  clickTargets.forEach(el => {
+    el.addEventListener('click', () => {
+      if (window.clanAudio) window.clanAudio.playClick();
+    }, { passive: true });
   });
 }

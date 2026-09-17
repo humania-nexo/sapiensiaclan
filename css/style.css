@@ -198,6 +198,33 @@ body {
   color: #fff;
 }
 
+.btn-sound-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-sound-glass:hover {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fff;
+}
+
+.btn-sound-glass.is-muted {
+  opacity: 0.55;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
 /* 4. HERO SECTION */
 .hero-section {
   min-height: 90vh;
