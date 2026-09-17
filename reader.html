@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lector Editorial — SAPIENSIA Clan</title>
+  <meta name="description" content="Lector web inmersivo y sin distracciones para las obras de SAPIENSIA Clan.">
+  <meta name="theme-color" content="#0c0d12">
+  
+  <link rel="icon" type="image/png" href="assets/logo_sapiensia_clan.png">
+
+  <!-- Tipografías de Vanguardia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/reader.css">
+</head>
+<body>
+
+  <!-- Barra de progreso de lectura -->
+  <div id="reading-progress-bar"></div>
+
+  <!-- Cabecera de navegación y herramientas -->
+  <header class="reader-header">
+    <div class="reader-header-inner">
+      <a href="index.html#catalogo" class="btn-back-clan" title="Volver al Portal">
+        <span>← Clan</span>
+      </a>
+
+      <div class="reader-book-info">
+        <div id="reader-title" class="reader-book-title">Cargando obra...</div>
+        <div id="reader-author" class="reader-book-author">SAPIENSIA Clan</div>
+      </div>
+
+      <div class="reader-controls">
+        <button id="btn-font-minus" class="reader-btn-tool" title="Reducir letra">A-</button>
+        <button id="btn-font-plus" class="reader-btn-tool" title="Aumentar letra">A+</button>
+        <button id="btn-toggle-theme" class="reader-btn-tool" title="Cambiar tema">🌙 Dark</button>
+        <button id="btn-toggle-toc" class="reader-btn-tool" title="Índice de capítulos">📑 Índice</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor principal de lectura -->
+  <main class="reader-container">
+    <article id="reader-content" class="reader-content">
+      <!-- El texto del capítulo se inyecta dinámicamente aquí -->
+    </article>
+
+    <!-- Navegación inferior entre capítulos -->
+    <nav class="reader-footer-nav">
+      <button id="btn-prev-chap" class="btn-nav-chap">← Capítulo Anterior</button>
+      <button id="btn-next-chap" class="btn-nav-chap">Siguiente Capítulo →</button>
+    </nav>
+  </main>
+
+  <!-- Panel lateral (Drawer) del Índice de Capítulos y Descargas -->
+  <aside id="chapter-drawer" class="chapter-drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Índice</span>
+      <button id="btn-close-drawer" class="btn-close-drawer" title="Cerrar índice">&times;</button>
+    </div>
+
+    <ul id="chapter-list" class="chapter-list">
+      <!-- Lista de capítulos inyectada dinámicamente -->
+    </ul>
+
+    <div class="drawer-downloads">
+      <span class="drawer-title" style="font-size: 0.85rem;">Descargar Obra</span>
+      <a id="link-download-epub" href="#" class="download-link-btn" download>📱 Descargar EPUB</a>
+      <a id="link-download-pdf" href="#" class="download-link-btn" download>📄 Descargar PDF</a>
+    </div>
+  </aside>
+
+  <!-- Módulos de datos y lógica del lector -->
+  <script src="data/obras_data.js"></script>
+  <script src="js/reader.js"></script>
+</body>
+</html>

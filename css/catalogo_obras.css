@@ -138,6 +138,13 @@
 }
 
 /* --- BOTONES DE ACCIÓN DE CATÁLOGO --- */
+.obra-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .btn-card-primary {
   display: inline-flex;
   align-items: center;
@@ -159,6 +166,34 @@
   background: var(--amber-primary);
   color: #000;
   box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+}
+
+.obra-download-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-card-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-card-sub:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
 }
 
 .btn-play {
