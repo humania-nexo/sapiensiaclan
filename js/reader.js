@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ==========================================================================
  * SAPIENSIA CLAN — MÓDULO LECTOR WEB (JS/READER.JS)
  * Archivo: js/reader.js
@@ -147,6 +147,8 @@ function buildChapterDrawer() {
 function setupDownloadLinks() {
   const epubLink = document.getElementById('link-download-epub');
   const pdfLink = document.getElementById('link-download-pdf');
+  const audioLink = document.getElementById('link-download-audio');
+  const switchAudioBtn = document.getElementById('btn-switch-audio');
 
   if (epubLink && currentObra.epub) {
     epubLink.href = currentObra.epub;
@@ -155,6 +157,18 @@ function setupDownloadLinks() {
   if (pdfLink && currentObra.pdf) {
     pdfLink.href = currentObra.pdf;
     pdfLink.download = `${currentObra.title}.pdf`;
+  }
+  if (switchAudioBtn) {
+    switchAudioBtn.href = `audio.html?obra=${currentObra.id}`;
+  }
+  if (audioLink) {
+    if (currentObra.audio && currentObra.audio.status === 'ready' && currentObra.audio.src) {
+      audioLink.href = currentObra.audio.src;
+      audioLink.download = currentObra.audio.downloadName || `${currentObra.title}_Audiolibro.mp3`;
+      audioLink.style.display = 'block';
+    } else {
+      audioLink.style.display = 'none';
+    }
   }
 }
 

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audiolibro — SAPIENSIA Clan</title>
+  <meta name="description" content="Reproductor web inmersivo de audiolibros oficiales de SAPIENSIA Clan. Escucha sin interrupciones ni publicidad.">
+  <meta name="theme-color" content="#08080a">
+  
+  <link rel="icon" type="image/png" href="assets/logo_sapiensia_clan.png">
+
+  <!-- Tipografías de Vanguardia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/audio.css">
+</head>
+<body>
+
+  <!-- AURORA AMBIENTAL FLOTANTE GPU -->
+  <div class="aurora-mesh" aria-hidden="true">
+    <div class="aurora-blob aurora-amber"></div>
+    <div class="aurora-blob aurora-indigo"></div>
+  </div>
+
+  <!-- CANVAS DE PARTÍCULAS INTERACTIVAS -->
+  <canvas id="stardust-canvas"></canvas>
+
+  <!-- CABECERA SUPERIOR GLASS -->
+  <header class="audio-header">
+    <div class="audio-header-inner">
+      <a href="index.html#catalogo" class="btn-back-clan" title="Volver al Catálogo del Clan">
+        <span>← Clan</span>
+      </a>
+
+      <div id="audio-header-title" class="audio-header-title">
+        Cargando audiolibro...
+        <span>SAPIENSIA CLAN</span>
+      </div>
+
+      <a id="btn-switch-reader" href="reader.html" class="btn-switch-reader" title="Cambiar a lectura de texto">
+        <img src="assets/emojis/emoji_libro.png" class="pixel-icon-inline" alt="Leer">
+        <span>Leer Libro</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="audio-main">
+
+    <!-- 1. CASO A: AUDIOLIBRO LISTO PARA REPRODUCIR (LOS TEXTOS DEL POETA) -->
+    <div id="audio-ready-container" style="display: none; flex-direction: column; gap: 36px;">
+      
+      <!-- TARJETA HERO DEL REPRODUCTOR -->
+      <section class="audio-player-hero">
+        <div class="audio-cover-wrapper">
+          <div class="audio-cover-box">
+            <img id="audio-cover-img" src="" alt="Portada" class="audio-cover-img">
+            <div class="audio-cover-badge">AUDIOLIBRO OFICIAL</div>
+          </div>
+        </div>
+
+        <div class="audio-details">
+          <div class="audio-badge-live">
+            <span class="audio-live-dot"></span>
+            <span>REPRODUCTOR WEB DE VANGUARDIA</span>
+          </div>
+
+          <h1 id="audio-book-title" class="audio-book-title">Cargando...</h1>
+          <p id="audio-book-subtitle" class="audio-book-subtitle"></p>
+          <div id="audio-book-author" class="audio-book-author"></div>
+
+          <div id="audio-active-chapter-name" class="audio-active-chapter-name">
+            Cargando capítulos...
+          </div>
+
+          <!-- PANEL DE CONTROLES PRINCIPALES -->
+          <div class="audio-controls-panel">
+            
+            <!-- Barra de tiempo (Scrubber / Timeline) -->
+            <div class="audio-timeline-wrap">
+              <div id="audio-scrubber-track" class="audio-scrubber-track">
+                <div id="audio-scrubber-fill" class="audio-scrubber-fill"></div>
+              </div>
+              <div class="audio-time-row">
+                <span id="audio-time-current">00:00</span>
+                <span id="audio-time-duration">--:--</span>
+              </div>
+            </div>
+
+            <!-- Botones de mando Play / Rewind / Forward -->
+            <div class="audio-buttons-row">
+              <button id="btn-audio-rewind" class="btn-audio-step" title="Retroceder 15 segundos (←)">-15s</button>
+              <button id="btn-audio-play" class="btn-audio-play" title="Reproducir / Pausar (Espacio)">▶</button>
+              <button id="btn-audio-forward" class="btn-audio-step" title="Avanzar 15 segundos (→)">+15s</button>
+            </div>
+
+            <!-- Herramientas secundarias: Velocidad, Volumen y Descarga -->
+            <div class="audio-tools-row">
+              <div class="speed-selector-group" title="Velocidad de reproducción">
+                <button class="btn-speed" data-speed="0.75">0.75x</button>
+                <button class="btn-speed active" data-speed="1.0">1.0x</button>
+                <button class="btn-speed" data-speed="1.25">1.25x</button>
+                <button class="btn-speed" data-speed="1.5">1.5x</button>
+                <button class="btn-speed" data-speed="2.0">2.0x</button>
+              </div>
+
+              <div class="volume-control-group">
+                <button id="btn-volume-toggle" class="btn-volume-icon" title="Silenciar / Activar audio (M)">🔊</button>
+                <input id="volume-slider" type="range" class="volume-slider" min="0" max="1" step="0.05" value="1" title="Volumen">
+              </div>
+
+              <a id="btn-download-mp3" href="#" class="btn-download-mp3" download>
+                <span>📥 Descargar MP3 (37.4 MB)</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN DEL TRACKLIST / ÍNDICE DE CAPÍTULOS -->
+      <section class="audio-tracklist-section">
+        <div class="tracklist-header">
+          <h2 class="tracklist-title">
+            <img src="assets/emojis/emoji_nota_musical.png" class="pixel-icon-inline" alt="Audio">
+            Índice de Capítulos & Saltos
+          </h2>
+          <span id="tracklist-count" class="tracklist-count">-- CAPÍTULOS</span>
+        </div>
+
+        <div id="tracklist-grid" class="tracklist-grid">
+          <!-- Inyectado dinámicamente -->
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 2. CASO B: AUDIOLIBRO EN GRABACIÓN (VELA) -->
+    <div id="audio-recording-container" style="display: none; flex-direction: column; gap: 36px;">
+      <section class="audio-player-hero vela-recording-box">
+        <div class="dharma-radar">
+          <img src="assets/emojis/emoji_destello_magico.png" class="pixel-icon-inline" style="width: 28px; height: 28px;" alt="Radar">
+        </div>
+
+        <span class="dharma-status-badge">● ESTADO: EN FASE DE GRABACIÓN DE ESTUDIO</span>
+
+        <h1 id="recording-title" class="audio-book-title" style="font-size: 2.4rem;">VELA</h1>
+        
+        <p id="recording-quote" class="dharma-quote">
+          «A 1.2 Unidades Astronómicas más allá de Júpiter, los bancos de memoria aguardan las frecuencias de voz...»
+        </p>
+
+        <p id="recording-msg" class="dharma-msg">
+          La narración y masterización sonora de la travesía de Dharma están siendo grabadas por Anigami Agadni. Mientras afinamos las frecuencias cósmicas, puedes disfrutar de la versión de texto completa.
+        </p>
+
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+          <a id="btn-read-vela" href="reader.html?obra=vela" class="btn-card-primary" style="padding: 12px 28px;">
+            <span><img src="assets/emojis/emoji_libro.png" class="pixel-icon-inline" alt="Leer">LEER VELA EN EL LECTOR ONLINE</span>
+          </a>
+          <a href="downloads/VELA.epub" download="VELA.epub" class="btn-card-sub" style="padding: 12px 20px;">
+            <span>📱 DESCARGAR EPUB</span>
+          </a>
+          <a href="downloads/VELA.pdf" download="VELA.pdf" class="btn-card-sub" style="padding: 12px 20px;">
+            <span>📄 DESCARGAR PDF</span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="data/obras_data.js"></script>
+  <script src="js/stardust.js"></script>
+  <script src="js/audio_player.js"></script>
+</body>
+</html>
