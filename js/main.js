@@ -1,4 +1,4 @@
-﻿/**
+/**
  * main.js — Lógica Interactiva, Partículas Stardust y Microinteracciones 3D
  * SAPIENSIA CLAN Portal Oficial
  */
@@ -192,13 +192,13 @@ function initCopyBinance() {
     const id = '35863102';
     try {
       await navigator.clipboard.writeText(id);
-      copyIcon.textContent = '✅';
+      copyIcon.innerHTML = '<img src="assets/emojis/emoji_simbolo_check.png" class="pixel-icon-inline" alt="Check">';
       copyText.textContent = '¡Binance ID Copiado!';
       btn.style.borderColor = '#10b981';
       btn.style.color = '#10b981';
 
       setTimeout(() => {
-        copyIcon.textContent = '📋';
+        copyIcon.innerHTML = '<img src="assets/emojis/emoji_pergamino.png" class="pixel-icon-inline" alt="Copiar">';
         copyText.textContent = `Copiar Binance ID (${id})`;
         btn.style.borderColor = '';
         btn.style.color = '';

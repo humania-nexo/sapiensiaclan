@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    SAPIENSIA CLAN — ESTILO OFICIAL VANGUARDIA (DARK SCI-FI & EDITORIAL GLASS)
    ========================================================================== */
 
@@ -429,6 +429,38 @@ body {
 .manifiesto-icon {
   font-size: 2.2rem;
   margin-bottom: 16px;
+}
+
+/* PIXEL ART ICONS (PIX) */
+.pixel-icon-inline {
+  width: 18px;
+  height: 18px;
+  image-rendering: pixelated;
+  vertical-align: -3px;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.pixel-icon-lg {
+  width: 44px;
+  height: 44px;
+  image-rendering: pixelated;
+  display: inline-block;
+  filter: drop-shadow(0 4px 12px rgba(245, 158, 11, 0.3));
+  transition: transform 0.2s ease;
+}
+
+.card-glass:hover .pixel-icon-lg {
+  transform: scale(1.1);
+}
+
+.pixel-icon-badge {
+  width: 15px;
+  height: 15px;
+  image-rendering: pixelated;
+  vertical-align: -2px;
+  margin-right: 6px;
+  display: inline-block;
 }
 
 .card-heading {
