@@ -94,6 +94,34 @@
   color: var(--amber-glow);
 }
 
+@media (max-width: 768px) {
+  .audio-navbar {
+    padding: 10px 14px;
+  }
+  .audio-navbar .nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .obra-switcher-tabs {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+  .tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 0.74rem;
+  }
+  .btn-back-clan, .btn-switch-reader {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}
+
 /* --- CONTENEDOR PRINCIPAL --- */
 .audio-container {
   flex: 1;

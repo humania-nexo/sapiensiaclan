@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ==========================================================================
  * SAPIENSIA CLAN — ORQUESTADOR PRINCIPAL (MAIN.JS)
  * Archivo: js/main.js
@@ -28,7 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initCopyBinance();
   }
 
-  // 5. Iniciar enlaces de micro-audio procedural (js/audio_ui.js)
+  // 5. Iniciar menú hamburguesa móvil (js/interactive_ui.js)
+  if (typeof initMobileMenu === 'function') {
+    initMobileMenu();
+  }
+
+  // 6. Iniciar enlaces de micro-audio procedural (js/audio_ui.js)
   initAudioInteractions();
 });
 

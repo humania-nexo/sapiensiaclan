@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ==========================================================================
  * SAPIENSIA CLAN — MÓDULO JS: MICROINTERACCIONES & UI INTERACTIVA
  * Archivo: js/interactive_ui.js
@@ -92,6 +92,41 @@ function initCopyBinance() {
     } catch (err) {
       // Fallback para navegadores que bloqueen clipboard API
       prompt('Copia manualmente el Binance ID:', id);
+    }
+  });
+}
+
+/**
+ * 4. MENÚ HAMBURGUESA MÓVIL
+ * Abre y cierra el menú de navegación en pantallas pequeñas con animación fluida.
+ */
+function initMobileMenu() {
+  const btnMenu = document.getElementById('btn-mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+
+  if (!btnMenu || !navLinks) return;
+
+  const toggleMenu = (open) => {
+    const isOpen = open !== undefined ? open : !navLinks.classList.contains('is-open');
+    btnMenu.classList.toggle('is-active', isOpen);
+    btnMenu.setAttribute('aria-expanded', isOpen.toString());
+    navLinks.classList.toggle('is-open', isOpen);
+  };
+
+  btnMenu.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  // Cerrar al hacer clic en cualquier enlace
+  navLinks.querySelectorAll('.nav-item').forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Cerrar al hacer clic fuera del menú
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('is-open') && !navLinks.contains(e.target) && !btnMenu.contains(e.target)) {
+      toggleMenu(false);
     }
   });
 }
