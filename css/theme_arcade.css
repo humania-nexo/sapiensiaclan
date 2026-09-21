@@ -223,7 +223,6 @@
 [data-theme="arcade"] .meta-chip,
 [data-theme="arcade"] .obra-badge-float,
 [data-theme="arcade"] .transmedia-badge,
-[data-theme="arcade"] .clan-role,
 [data-theme="arcade"] .status-box {
   background: #030712 !important;
   border: 2px solid #38bdf8 !important;
@@ -231,11 +230,80 @@
   color: #38bdf8 !important;
 }
 
-[data-theme="arcade"] .clan-role.role-director,
 [data-theme="arcade"] .obra-badge-float {
   border-color: #f59e0b !important;
   box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #fde68a, inset -1px -1px 0 #78350f !important;
   color: #fbbf24 !important;
+}
+
+/* --- INSIGNIAS DE ROL INDIVIDUALIZADAS (CLAN & ALIADAS EN MODO ARCADE) --- */
+[data-theme="arcade"] .clan-role {
+  padding: 4px 8px !important;
+  line-height: 1.5 !important;
+}
+
+/* 1. Director (Anigami Agadni - Ámbar / Oro) */
+[data-theme="arcade"] .clan-role.role-director {
+  color: #fbbf24 !important;
+  background: #1c1304 !important;
+  border: 2px solid #f59e0b !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #fde68a, inset -1px -1px 0 #78350f !important;
+}
+
+/* 2. Ingeniero Principal (Nexo - Cian Eléctrico) */
+[data-theme="arcade"] .clan-role.role-ing {
+  color: #38bdf8 !important;
+  background: #041421 !important;
+  border: 2px solid #0284c7 !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #7dd3fc, inset -1px -1px 0 #0369a1 !important;
+}
+
+/* 3. Artista Pixel Art (Pix - Magenta / Rosa Neón) */
+[data-theme="arcade"] .clan-role.role-art {
+  color: #f472b6 !important;
+  background: #200816 !important;
+  border: 2px solid #ec4899 !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #fbcfe8, inset -1px -1px 0 #be185d !important;
+}
+
+/* 4. Cronista del Yermo (Silas - Violeta / Púrpura Místico) */
+[data-theme="arcade"] .clan-role.role-lore {
+  color: #c084fc !important;
+  background: #170724 !important;
+  border: 2px solid #a855f7 !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #e9d5ff, inset -1px -1px 0 #7e22ce !important;
+}
+
+/* 5. Sonidista Procedural (Hertz - Verde Esmeralda / Matrix) */
+[data-theme="arcade"] .clan-role.role-sound {
+  color: #34d399 !important;
+  background: #021a12 !important;
+  border: 2px solid #10b981 !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #a7f3d0, inset -1px -1px 0 #047857 !important;
+}
+
+/* 6. Estratega de Enlace (Éter - Naranja / Cobre) */
+[data-theme="arcade"] .clan-role.role-comm {
+  color: #fb923c !important;
+  background: #240d04 !important;
+  border: 2px solid #ea580c !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #fed7aa, inset -1px -1px 0 #9a3412 !important;
+}
+
+/* 7. Consultoría Literatura (Claudia - Índigo / Azul Real) */
+[data-theme="arcade"] .clan-role.role-colab-lit {
+  color: #a5b4fc !important;
+  background: #0d0e26 !important;
+  border: 2px solid #6366f1 !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #c7d2fe, inset -1px -1px 0 #4338ca !important;
+}
+
+/* 8. Consultoría Gráfica & Técnica (Lumen - Teal / Aguamarina) */
+[data-theme="arcade"] .clan-role.role-colab-tech {
+  color: #5eead4 !important;
+  background: #041d1a !important;
+  border: 2px solid #14b8a6 !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #99f6e4, inset -1px -1px 0 #0f766e !important;
 }
 
 [data-theme="arcade"] .gold-line {
@@ -484,9 +552,73 @@
   box-shadow: 4px 4px 0 #1e293b !important;
 }
 
+/* --- CAJETINES DE AVATAR PIXEL ART INDIVIDUALIZADOS --- */
 [data-theme="arcade"] .avatar-box {
-  border: 2px solid #f59e0b !important;
-  box-shadow: 2px 2px 0 #000 !important;
+  background: #080a10 !important;
+  border: 2px solid #38bdf8 !important;
+  box-shadow: 3px 3px 0 #000 !important;
+  transition: transform 0.15s ease, filter 0.15s ease !important;
+}
+
+[data-theme="arcade"] .clan-card:hover .avatar-box {
+  transform: translate(-1px, -1px) !important;
+  filter: brightness(1.2) !important;
+}
+
+/* 1. Director (Anigami - Ámbar) */
+[data-theme="arcade"] .avatar-box.avatar-director {
+  border-color: #f59e0b !important;
+  background: #1c1304 !important;
+  box-shadow: 3px 3px 0 #000, inset 1px 1px 0 #fde68a, inset -1px -1px 0 #78350f, 0 0 14px rgba(245, 158, 11, 0.35) !important;
+}
+
+/* 2. Ingeniero Principal (Nexo - Cian) */
+[data-theme="arcade"] .avatar-box.avatar-ing {
+  border-color: #0284c7 !important;
+  background: #041421 !important;
+  box-shadow: 3px 3px 0 #000, inset 1px 1px 0 #7dd3fc, inset -1px -1px 0 #0369a1, 0 0 14px rgba(56, 189, 248, 0.35) !important;
+}
+
+/* 3. Artista Pixel Art (Pix - Magenta / Rosa) */
+[data-theme="arcade"] .avatar-box.avatar-art {
+  border-color: #ec4899 !important;
+  background: #200816 !important;
+  box-shadow: 3px 3px 0 #000, inset 1px 1px 0 #fbcfe8, inset -1px -1px 0 #be185d, 0 0 14px rgba(236, 72, 153, 0.35) !important;
+}
+
+/* 4. Cronista del Yermo (Silas - Púrpura) */
+[data-theme="arcade"] .avatar-box.avatar-lore {
+  border-color: #a855f7 !important;
+  background: #170724 !important;
+  box-shadow: 3px 3px 0 #000, inset 1px 1px 0 #e9d5ff, inset -1px -1px 0 #7e22ce, 0 0 14px rgba(168, 85, 247, 0.35) !important;
+}
+
+/* 5. Sonidista Procedural (Hertz - Verde Esmeralda) */
+[data-theme="arcade"] .avatar-box.avatar-sound {
+  border-color: #10b981 !important;
+  background: #021a12 !important;
+  box-shadow: 3px 3px 0 #000, inset 1px 1px 0 #a7f3d0, inset -1px -1px 0 #047857, 0 0 14px rgba(16, 185, 129, 0.35) !important;
+}
+
+/* 6. Estratega de Enlace (Éter - Naranja) */
+[data-theme="arcade"] .avatar-box.avatar-comm {
+  border-color: #ea580c !important;
+  background: #240d04 !important;
+  box-shadow: 3px 3px 0 #000, inset 1px 1px 0 #fed7aa, inset -1px -1px 0 #9a3412, 0 0 14px rgba(251, 146, 60, 0.35) !important;
+}
+
+/* 7. Colaboradora Literatura (Claudia - Índigo) */
+[data-theme="arcade"] .avatar-box.avatar-colab-lit {
+  border-color: #6366f1 !important;
+  background: #0d0e26 !important;
+  box-shadow: 3px 3px 0 #000, inset 1px 1px 0 #c7d2fe, inset -1px -1px 0 #4338ca, 0 0 14px rgba(99, 102, 241, 0.35) !important;
+}
+
+/* 8. Colaboradora Gráfica & Técnica (Lumen - Teal) */
+[data-theme="arcade"] .avatar-box.avatar-colab-tech {
+  border-color: #14b8a6 !important;
+  background: #041d1a !important;
+  box-shadow: 3px 3px 0 #000, inset 1px 1px 0 #99f6e4, inset -1px -1px 0 #0f766e, 0 0 14px rgba(20, 184, 166, 0.35) !important;
 }
 
 [data-theme="arcade"] .formula-box,

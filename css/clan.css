@@ -58,6 +58,16 @@
   image-rendering: pixelated;
 }
 
+/* Colores individuales para cada cajetín de avatar */
+.avatar-director   { border-color: rgba(245, 158, 11, 0.5); box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25); }
+.avatar-ing        { border-color: rgba(56, 189, 248, 0.5); box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25); }
+.avatar-art        { border-color: rgba(236, 72, 153, 0.5); box-shadow: 0 4px 16px rgba(236, 72, 153, 0.25); }
+.avatar-lore       { border-color: rgba(168, 85, 247, 0.5); box-shadow: 0 4px 16px rgba(168, 85, 247, 0.25); }
+.avatar-sound      { border-color: rgba(16, 185, 129, 0.5); box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25); }
+.avatar-comm       { border-color: rgba(251, 146, 60, 0.5); box-shadow: 0 4px 16px rgba(251, 146, 60, 0.25); }
+.avatar-colab-lit  { border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25); }
+.avatar-colab-tech { border-color: rgba(20, 184, 166, 0.5); box-shadow: 0 4px 16px rgba(20, 184, 166, 0.25); }
+
 .clan-name {
   font-family: var(--font-serif-title);
   font-size: 1.25rem;
