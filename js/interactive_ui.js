@@ -137,18 +137,16 @@ function initMobileMenu() {
  */
 function initThemeToggle() {
   const btn = document.getElementById('btn-theme-toggle');
-  const label = document.getElementById('theme-toggle-label');
 
   const applyTheme = (theme, playAudio = false) => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('sapiensia_view_mode', theme);
 
-    if (label) {
-      label.textContent = theme === 'arcade' ? 'ARCADE' : 'ANTROPO';
-    }
     if (btn) {
-      btn.setAttribute('title', theme === 'arcade' ? 'Modo Arcade Activo (Clic para volver a Modo Antropo)' : 'Modo Antropo Activo (Clic para cambiar a Modo Arcade Pixel)');
-      btn.classList.toggle('is-arcade', theme === 'arcade');
+      const isArcade = theme === 'arcade';
+      btn.setAttribute('aria-checked', isArcade.toString());
+      btn.setAttribute('title', isArcade ? 'Modo Arcade: ON (Clic para apagar)' : 'Modo Arcade: OFF (Clic para encender)');
+      btn.classList.toggle('is-active-on', isArcade);
     }
 
     // Conmutar portadas de obras dinámicas

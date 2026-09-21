@@ -67,12 +67,20 @@
         <a href="#proximamente" class="nav-item">Transmedia</a>
         <a href="#apoyo" class="nav-item nav-btn-apoyo"><span class="ico-antropo">💛</span><img src="assets/emojis/emoji_corazon_brillante.png" class="ico-arcade pixel-icon-inline" alt="Apoyo">Apoyar</a>
         
-        <!-- Conmutador Modo Antropo vs Modo Arcade -->
-        <button id="btn-theme-toggle" class="btn-theme-glass" title="Cambiar modo de visualización" aria-label="Conmutador de Modo Antropo vs Arcade">
-          <span class="ico-antropo">🏛️</span>
-          <span class="ico-arcade">👾</span>
-          <span id="theme-toggle-label">ANTROPO</span>
-        </button>
+        <!-- Conmutador Deslizable Modo Antropo vs Modo Arcade -->
+        <div class="arcade-switch-wrapper" id="theme-switch-wrap">
+          <span class="arcade-switch-title">ARCADE</span>
+          <button id="btn-theme-toggle" class="arcade-switch-btn" role="switch" aria-checked="false" aria-label="Conmutador de Modo Arcade" title="Modo Arcade: OFF / ON">
+            <span class="switch-state-label label-off">OFF</span>
+            <span class="switch-track">
+              <span class="switch-thumb">
+                <span class="thumb-icon ico-antropo">🏛️</span>
+                <span class="thumb-icon ico-arcade">👾</span>
+              </span>
+            </span>
+            <span class="switch-state-label label-on">ON</span>
+          </button>
+        </div>
 
         <!-- Micro-Feedback Sonoro Hertz -->
         <button id="btn-sound-toggle" class="btn-sound-glass" title="Micro-feedback sonoro (Hertz 0 KB)" aria-label="Control de sonido"><span class="ico-antropo">🎧</span><img src="assets/emojis/emoji_nota_musical.png" class="ico-arcade pixel-icon-inline" alt="Audio"><span id="sound-toggle-label">FX: ON</span></button>

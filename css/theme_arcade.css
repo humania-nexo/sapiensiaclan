@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    SAPIENSIA CLAN — MÓDULO 10: MODO ARCADE (100% RETRO PIXEL ART TOTAL)
    Archivo: css/theme_arcade.css
    Descripción: Transformación total a estética Arcade 8/16-bits.
@@ -422,8 +422,7 @@
   padding: 6px 12px !important;
 }
 
-[data-theme="arcade"] .btn-sound-glass,
-[data-theme="arcade"] .btn-theme-glass {
+[data-theme="arcade"] .btn-sound-glass {
   font-family: 'Press Start 2P', monospace !important;
   font-size: 0.60rem !important;
   background: #0f172a !important;
@@ -436,13 +435,37 @@
   padding: 6px 10px !important;
 }
 
-[data-theme="arcade"] .btn-theme-glass.is-arcade {
-  background: #0369a1 !important;
-  box-shadow: 
-    inset 2px 2px 0 #38bdf8,
-    inset -2px -2px 0 #082f49,
-    2px 2px 0 #000 !important;
-  color: #fff !important;
+/* --- CONMUTADOR SLIDER ARCADE ON / OFF --- */
+[data-theme="arcade"] .arcade-switch-title {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.52rem !important;
+  color: #fbbf24 !important;
+  text-shadow: 1px 1px 0 #000 !important;
+}
+
+[data-theme="arcade"] .switch-state-label {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.54rem !important;
+}
+
+[data-theme="arcade"] .switch-track {
+  width: 48px !important;
+  height: 22px !important;
+  border: 2px solid #000 !important;
+  background: #0f172a !important;
+  box-shadow: inset 2px 2px 0 #020617, inset -2px -2px 0 #1e293b, 2px 2px 0 #000 !important;
+}
+
+[data-theme="arcade"] .switch-thumb {
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid #000 !important;
+  background: #38bdf8 !important;
+  box-shadow: inset 1px 1px 0 #7dd3fc, inset -1px -1px 0 #0369a1 !important;
+}
+
+[data-theme="arcade"] .arcade-switch-btn.is-active-on .switch-thumb {
+  transform: translateX(24px) !important;
 }
 
 /* ==========================================================================
