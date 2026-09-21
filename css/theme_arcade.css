@@ -663,6 +663,31 @@
   color: #d4d4d8 !important;
 }
 
+/* --- TRILOGÍA PROIECTIO EN MODO ARCADE --- */
+[data-theme="arcade"] .proiectio-triptych-grid {
+  background: #030712 !important;
+  border: 2px solid #38bdf8 !important;
+  box-shadow: 3px 3px 0 #000 !important;
+  gap: 4px !important;
+}
+
+[data-theme="arcade"] .proiectio-cover-img {
+  image-rendering: pixelated !important;
+  border: 1px solid #000 !important;
+}
+
+[data-theme="arcade"] .proiectio-book-title {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.58rem !important;
+  color: #fbbf24 !important;
+}
+
+[data-theme="arcade"] .proiectio-book-sub {
+  font-family: 'VT323', monospace !important;
+  font-size: 1.15rem !important;
+  color: #94a3b8 !important;
+}
+
 /* ==========================================================================
    7. CAPA RETRO SCANLINES CRT (0 CPU OVERHEAD)
    ========================================================================== */
