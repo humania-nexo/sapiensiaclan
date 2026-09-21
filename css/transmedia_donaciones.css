@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    SAPIENSIA CLAN — MÓDULO 8: TRANSMEDIA & MECENAZGO LIBRE (BINANCE PAY)
    Archivo: css/transmedia_donaciones.css
    Descripción: Red de universos conectados, terminal PG y pasarela de donación cripto.
@@ -69,6 +69,72 @@
   border-radius: 50%;
   background-color: var(--amber-primary);
   box-shadow: 0 0 10px var(--amber-primary);
+}
+
+/* --- EL TINTERO / LA FORJA: TRABAJOS EN PROCESO --- */
+.tintero-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+  margin-bottom: 20px;
+}
+
+.tintero-item {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-glass);
+  border-left: 3px solid var(--amber-primary);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  transition: all 0.2s ease;
+}
+
+.tintero-item:hover {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.4);
+  transform: translateX(4px);
+}
+
+.tintero-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+
+.tintero-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tintero-title {
+  font-family: var(--font-serif-title);
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.tintero-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--amber-glow);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tintero-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
 }
 
 /* --- SECCIÓN DE DONACIONES (BINANCE PAY) --- */
