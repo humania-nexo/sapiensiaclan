@@ -162,7 +162,7 @@ function setupDownloadLinks() {
     switchAudioBtn.href = `audio.html?obra=${currentObra.id}`;
   }
   if (audioLink) {
-    if (currentObra.audio && currentObra.audio.status === 'ready' && currentObra.audio.src) {
+    if (currentObra.audio && currentObra.audio.src) {
       audioLink.href = currentObra.audio.src;
       audioLink.download = currentObra.audio.downloadName || `${currentObra.title}_Audiolibro.mp3`;
       audioLink.style.display = 'block';

@@ -9,10 +9,10 @@
 (function () {
   'use strict';
 
-  // 1. Obtener parámetro de URL (?obra=poeta o ?obra=vela)
+  // 1. Obtener parámetro de URL (?obra=poeta, ?obra=vela o ?obra=euthanasys)
   const urlParams = new URLSearchParams(window.location.search);
   let obraKey = urlParams.get('obra') || 'poeta';
-  if (obraKey !== 'poeta' && obraKey !== 'vela') {
+  if (!['poeta', 'vela', 'euthanasys'].includes(obraKey)) {
     obraKey = 'poeta';
   }
 
@@ -20,6 +20,7 @@
   const dom = {
     tabPoeta: document.getElementById('tab-poeta'),
     tabVela: document.getElementById('tab-vela'),
+    tabEuthanasys: document.getElementById('tab-euthanasys'),
     btnSwitchReader: document.getElementById('btn-switch-reader'),
     
     // Metadatos
@@ -82,13 +83,20 @@
     currentObra = window.SAPIENSIA_OBRAS[obraKey];
 
     // Resaltar pestaña activa en navbar
-    if (obraKey === 'poeta') {
-      if (dom.tabPoeta) dom.tabPoeta.classList.add('active');
-      if (dom.tabVela) dom.tabVela.classList.remove('active');
-    } else {
-      if (dom.tabVela) dom.tabVela.classList.add('active');
-      if (dom.tabPoeta) dom.tabPoeta.classList.remove('active');
-    }
+    const allTabs = [
+      { key: 'poeta', el: dom.tabPoeta },
+      { key: 'vela', el: dom.tabVela },
+      { key: 'euthanasys', el: dom.tabEuthanasys }
+    ];
+    allTabs.forEach(t => {
+      if (t.el) {
+        if (t.key === obraKey) {
+          t.el.classList.add('active');
+        } else {
+          t.el.classList.remove('active');
+        }
+      }
+    });
 
     // Botón para saltar al lector de texto
     if (dom.btnSwitchReader) {

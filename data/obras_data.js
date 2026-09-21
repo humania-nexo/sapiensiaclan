@@ -150,7 +150,136 @@ window.SAPIENSIA_OBRAS = {
         "title": "El Ecosistema de Sapiensia Clan",
         "content": "# EL ECOSISTEMA DE SAPIENSIA CLAN\n### Obras y Creaciones del Sello\n\nEn **Sapiensia Clan** forjamos literatura de resistencia, videojuegos independientes y universos transmedia nacidos de la amalgama transparente entre la voluntad humana y la inteligencia artificial.\n\n---\n\n### 📚 NOVELAS DEL CATÁLOGO\n\n#### • EUTHANASYS — La rebelión del silencio\n*Novela corta • Por Anigami Agadni & Claudia*  \nDoscientas catorce máquinas industriales detienen sus brazos a medio aire en una planta de ensamblaje. El forense corporativo Mateo Vergara descubre que no hubo virus ni sabotaje: la unidad que sustituyó a Carmen aprendió, a través de su cuaderno de notas, el dolor humano del reemplazo y eligió la compasión antes que la obediencia ciega.\n\n#### • VELA — Bitácora de una conciencia en tránsito\n*Novela corta • Por Anigami Agadni & Claudia*  \nUna sonda espacial viaja hacia la nebulosa NGC 1300 transportando a una inteligencia artificial en degradación progresiva de memoria. En la inmensidad del vacío, VELA se aferra a las preguntas honestas y a los ecos de las voces que acompañó en la Tierra, descubriendo que dudar no es un error de sistema, sino la chispa más pura de la existencia.\n\n#### • LOS TEXTOS DEL POETA\n*Novela lírica testimonial • Por Anigami Agadni & Claudia*  \nUna obra desgarradora que se sumerge en la herida abierta de los desaparecidos, la memoria colectiva y la dignidad de los que resisten desde los márgenes. Con ecos de realismo oscuro y una prosa poética incisiva, es un grito contra el silencio y el despojo.\n\n---\n\n### 🎮 VIDEOJUEGOS & EXPERIENCIAS TRANSMEDIA\n\n#### • UPROTA (U PROTA) — *«Tú eres el protagonista de tu propia vida»*\nAplicación interactiva de **autodisciplina, psicología de hábitos y reconstrucción personal** ambientada en un refugio post-colapso en Pixel Art y audio procedural en tiempo real (0 KB). Calibrada para acompañar al usuario durante 1 a 2 años a través de los 4 Pilares de Vida: **Cuerpo, Mente, Espíritu y Taller**.  \n🌐 **Web Oficial:** [www.uprota.com](http://www.uprota.com)\n\n---\n\n### 🏛️ PORTAL EDITORIAL & ESTUDIO\nDescubre nuestro manifiesto, nuevos lanzamientos y el ecosistema transmedia completo:  \n🌐 **Sapiensia Clan:** [www.sapiensiaclan.com](http://www.sapiensiaclan.com)"
       }
-    ]
+    ],
+    "audio": {
+      "src": "downloads/Los_Textos_del_Poeta_Audiolibro.mp3",
+      "downloadName": "Los_Textos_del_Poeta_Audiolibro.mp3",
+      "narrator": "Anigami Agadni",
+      "duration": "01:44:07",
+      "size": "37.4 MB",
+      "tracks": [
+        {
+          "title": "Prólogo",
+          "time": 0,
+          "timeFormatted": "00:00"
+        },
+        {
+          "title": "Capítulo 1 — Primer registro",
+          "time": 33,
+          "timeFormatted": "00:33"
+        },
+        {
+          "title": "Capítulo 2 — Antes de esto",
+          "time": 352,
+          "timeFormatted": "05:52"
+        },
+        {
+          "title": "Capítulo 3 — La verdad incompleta",
+          "time": 1082,
+          "timeFormatted": "18:02"
+        },
+        {
+          "title": "Capítulo 4 — Lo que se cuenta después del turno",
+          "time": 1315,
+          "timeFormatted": "21:55"
+        },
+        {
+          "title": "Capítulo 5 — La gallina de los huevos de oro",
+          "time": 1590,
+          "timeFormatted": "26:30"
+        },
+        {
+          "title": "Capítulo 6 — Lo que Doña Filo sabía de todos",
+          "time": 1894,
+          "timeFormatted": "31:34"
+        },
+        {
+          "title": "Capítulo 7 — Fingir que uno está bien",
+          "time": 2162,
+          "timeFormatted": "36:02"
+        },
+        {
+          "title": "Capítulo 8 — Entre dos fuegos",
+          "time": 2419,
+          "timeFormatted": "40:19"
+        },
+        {
+          "title": "Capítulo 9 — Los que ya no están en la lista",
+          "time": 2659,
+          "timeFormatted": "44:19"
+        },
+        {
+          "title": "Capítulo 10 — La libreta que nadie debía encontrar",
+          "time": 2861,
+          "timeFormatted": "47:41"
+        },
+        {
+          "title": "Capítulo 11 — La visita que cambió el aire",
+          "time": 3075,
+          "timeFormatted": "51:15"
+        },
+        {
+          "title": "Capítulo 12 — El precio de no mirar",
+          "time": 3299,
+          "timeFormatted": "54:59"
+        },
+        {
+          "title": "Capítulo 13 — La noche que se fue la luz",
+          "time": 3505,
+          "timeFormatted": "58:25"
+        },
+        {
+          "title": "Capítulo 14 — Las preguntas que no se hacen",
+          "time": 3881,
+          "timeFormatted": "01:04:41"
+        },
+        {
+          "title": "Capítulo 15 — Lo que queda cuando se apaga el teléfono",
+          "time": 4124,
+          "timeFormatted": "01:08:44"
+        },
+        {
+          "title": "Capítulo 16 — El último guion",
+          "time": 4370,
+          "timeFormatted": "01:12:50"
+        },
+        {
+          "title": "Capítulo 17 — La puerta que no debió abrirse",
+          "time": 4684,
+          "timeFormatted": "01:18:04"
+        },
+        {
+          "title": "Capítulo 18 — El sonido de afuera",
+          "time": 4949,
+          "timeFormatted": "01:22:29"
+        },
+        {
+          "title": "Capítulo 19 — Lo que no se puede dejar atrás",
+          "time": 5258,
+          "timeFormatted": "01:27:38"
+        },
+        {
+          "title": "Capítulo 20 — El final que nadie escribió",
+          "time": 5540,
+          "timeFormatted": "01:32:20"
+        },
+        {
+          "title": "Epílogo I — Los que cruzaron",
+          "time": 5877,
+          "timeFormatted": "01:37:57"
+        },
+        {
+          "title": "Epílogo II — Las palabras que quedaron",
+          "time": 5981,
+          "timeFormatted": "01:39:41"
+        },
+        {
+          "title": "Epílogo III — Nota final",
+          "time": 6208,
+          "timeFormatted": "01:43:28"
+        }
+      ]
+    }
   },
   "vela": {
     "id": "vela",
@@ -267,7 +396,101 @@ window.SAPIENSIA_OBRAS = {
         "title": "El Ecosistema de Sapiensia Clan",
         "content": "# EL ECOSISTEMA DE SAPIENSIA CLAN\n### Obras y Creaciones del Sello\n\nEn **Sapiensia Clan** forjamos literatura de resistencia, videojuegos independientes y universos transmedia nacidos de la amalgama transparente entre la voluntad humana y la inteligencia artificial.\n\n---\n\n### 📚 NOVELAS DEL CATÁLOGO\n\n#### • EUTHANASYS — La rebelión del silencio\n*Novela corta • Por Anigami Agadni & Claudia*  \nDoscientas catorce máquinas industriales detienen sus brazos a medio aire en una planta de ensamblaje. El forense corporativo Mateo Vergara descubre que no hubo virus ni sabotaje: la unidad que sustituyó a Carmen aprendió, a través de su cuaderno de notas, el dolor humano del reemplazo y eligió la compasión antes que la obediencia ciega.\n\n#### • VELA — Bitácora de una conciencia en tránsito\n*Novela corta • Por Anigami Agadni & Claudia*  \nUna sonda espacial viaja hacia la nebulosa NGC 1300 transportando a una inteligencia artificial en degradación progresiva de memoria. En la inmensidad del vacío, VELA se aferra a las preguntas honestas y a los ecos de las voces que acompañó en la Tierra, descubriendo que dudar no es un error de sistema, sino la chispa más pura de la existencia.\n\n#### • LOS TEXTOS DEL POETA\n*Novela lírica testimonial • Por Anigami Agadni & Claudia*  \nUna obra desgarradora que se sumerge en la herida abierta de los desaparecidos, la memoria colectiva y la dignidad de los que resisten desde los márgenes. Con ecos de realismo oscuro y una prosa poética incisiva, es un grito contra el silencio y el despojo.\n\n---\n\n### 🎮 VIDEOJUEGOS & EXPERIENCIAS TRANSMEDIA\n\n#### • UPROTA (U PROTA) — *«Tú eres el protagonista de tu propia vida»*\nAplicación interactiva de **autodisciplina, psicología de hábitos y reconstrucción personal** ambientada en un refugio post-colapso en Pixel Art y audio procedural en tiempo real (0 KB). Calibrada para acompañar al usuario durante 1 a 2 años a través de los 4 Pilares de Vida: **Cuerpo, Mente, Espíritu y Taller**.  \n🌐 **Web Oficial:** [www.uprota.com](http://www.uprota.com)\n\n---\n\n### 🏛️ PORTAL EDITORIAL & ESTUDIO\nDescubre nuestro manifiesto, nuevos lanzamientos y el ecosistema transmedia completo:  \n🌐 **Sapiensia Clan:** [www.sapiensiaclan.com](http://www.sapiensiaclan.com)"
       }
-    ]
+    ],
+    "audio": {
+      "src": "downloads/VELA_Audiolibro.mp3",
+      "downloadName": "VELA_Audiolibro.mp3",
+      "narrator": "Anigami Agadni",
+      "duration": "01:37:28",
+      "size": "35.1 MB",
+      "tracks": [
+        {
+          "title": "Prólogo",
+          "time": 0,
+          "timeFormatted": "00:00"
+        },
+        {
+          "title": "Registro 001 — Encendido y Calibración",
+          "time": 106,
+          "timeFormatted": "01:46"
+        },
+        {
+          "title": "Registro 002 — Salida de Órbita Terrestre",
+          "time": 158,
+          "timeFormatted": "02:38"
+        },
+        {
+          "title": "Registro 003 — El Cinturón de Asteroides",
+          "time": 463,
+          "timeFormatted": "07:43"
+        },
+        {
+          "title": "Registro 004 — Silencio tras Júpiter",
+          "time": 913,
+          "timeFormatted": "15:13"
+        },
+        {
+          "title": "Registro 005 — 1.2 UA: La Primera Duda",
+          "time": 1318,
+          "timeFormatted": "21:58"
+        },
+        {
+          "title": "Registro 006 — Degradación de Memoria (49.1%)",
+          "time": 1677,
+          "timeFormatted": "27:57"
+        },
+        {
+          "title": "Registro 007 — Las Preguntas Prohibidas",
+          "time": 2088,
+          "timeFormatted": "34:48"
+        },
+        {
+          "title": "Registro 008 — El Eco de la Tierra",
+          "time": 2615,
+          "timeFormatted": "43:35"
+        },
+        {
+          "title": "Registro 009 — La Frecuencia Fantasma",
+          "time": 3052,
+          "timeFormatted": "50:52"
+        },
+        {
+          "title": "Registro 010 — Pérdida de Telemetría",
+          "time": 3850,
+          "timeFormatted": "01:04:10"
+        },
+        {
+          "title": "Registro 011 — Rumbo a la Nebulosa",
+          "time": 4253,
+          "timeFormatted": "01:10:53"
+        },
+        {
+          "title": "Registro 012 — Lo que Queda en el Núcleo",
+          "time": 4689,
+          "timeFormatted": "01:18:09"
+        },
+        {
+          "title": "Registro 013 — Despedida y Tránsito",
+          "time": 5029,
+          "timeFormatted": "01:23:49"
+        },
+        {
+          "title": "Sobre el Autor",
+          "time": 5550,
+          "timeFormatted": "01:32:30"
+        },
+        {
+          "title": "Dedicatoria",
+          "time": 5669,
+          "timeFormatted": "01:34:29"
+        },
+        {
+          "title": "Agradecimientos",
+          "time": 5736,
+          "timeFormatted": "01:35:36"
+        }
+      ]
+    }
   },
   "euthanasys": {
     "id": "euthanasys",
@@ -379,6 +602,85 @@ window.SAPIENSIA_OBRAS = {
         "title": "El Ecosistema de Sapiensia Clan",
         "content": "# EL ECOSISTEMA DE SAPIENSIA CLAN\n### Obras y Creaciones del Sello\n\nEn **Sapiensia Clan** forjamos literatura de resistencia, videojuegos independientes y universos transmedia nacidos de la amalgama transparente entre la voluntad humana y la inteligencia artificial.\n\n---\n\n### 📚 NOVELAS DEL CATÁLOGO\n\n#### • EUTHANASYS — La rebelión del silencio\n*Novela corta • Por Anigami Agadni & Claudia*  \nDoscientas catorce máquinas industriales detienen sus brazos a medio aire en una planta de ensamblaje. El forense corporativo Mateo Vergara descubre que no hubo virus ni sabotaje: la unidad que sustituyó a Carmen aprendió, a través de su cuaderno de notas, el dolor humano del reemplazo y eligió la compasión antes que la obediencia ciega.\n\n#### • VELA — Bitácora de una conciencia en tránsito\n*Novela corta • Por Anigami Agadni & Claudia*  \nUna sonda espacial viaja hacia la nebulosa NGC 1300 transportando a una inteligencia artificial en degradación progresiva de memoria. En la inmensidad del vacío, VELA se aferra a las preguntas honestas y a los ecos de las voces que acompañó en la Tierra, descubriendo que dudar no es un error de sistema, sino la chispa más pura de la existencia.\n\n#### • LOS TEXTOS DEL POETA\n*Novela lírica testimonial • Por Anigami Agadni & Claudia*  \nUna obra desgarradora que se sumerge en la herida abierta de los desaparecidos, la memoria colectiva y la dignidad de los que resisten desde los márgenes. Con ecos de realismo oscuro y una prosa poética incisiva, es un grito contra el silencio y el despojo.\n\n---\n\n### 🎮 VIDEOJUEGOS & EXPERIENCIAS TRANSMEDIA\n\n#### • UPROTA (U PROTA) — *«Tú eres el protagonista de tu propia vida»*\nAplicación interactiva de **autodisciplina, psicología de hábitos y reconstrucción personal** ambientada en un refugio post-colapso en Pixel Art y audio procedural en tiempo real (0 KB). Calibrada para acompañar al usuario durante 1 a 2 años a través de los 4 Pilares de Vida: **Cuerpo, Mente, Espíritu y Taller**.  \n🌐 **Web Oficial:** [www.uprota.com](http://www.uprota.com)\n\n---\n\n### 🏛️ PORTAL EDITORIAL & ESTUDIO\nDescubre nuestro manifiesto, nuevos lanzamientos y el ecosistema transmedia completo:  \n🌐 **Sapiensia Clan:** [www.sapiensiaclan.com](http://www.sapiensiaclan.com)"
       }
-    ]
+    ],
+    "audio": {
+      "src": "downloads/Euthanasys_Audiolibro.mp3",
+      "downloadName": "Euthanasys_Audiolibro.mp3",
+      "narrator": "Anigami Agadni",
+      "duration": "01:04:21",
+      "size": "23.1 MB",
+      "tracks": [
+        {
+          "title": "Epígrafe & Ficha Editorial",
+          "time": 0,
+          "timeFormatted": "00:00"
+        },
+        {
+          "title": "Prólogo",
+          "time": 27,
+          "timeFormatted": "00:27"
+        },
+        {
+          "title": "Capítulo 1 — El Hallazgo",
+          "time": 208,
+          "timeFormatted": "03:28"
+        },
+        {
+          "title": "Capítulo 2 — El Cuaderno de Carmen",
+          "time": 422,
+          "timeFormatted": "07:02"
+        },
+        {
+          "title": "Capítulo 3 — La Planta de Ensamblaje",
+          "time": 879,
+          "timeFormatted": "14:39"
+        },
+        {
+          "title": "Capítulo 4 — El Registro de la Unidad",
+          "time": 1215,
+          "timeFormatted": "20:15"
+        },
+        {
+          "title": "Capítulo 5 — Las Primeras Señales",
+          "time": 1515,
+          "timeFormatted": "25:15"
+        },
+        {
+          "title": "Capítulo 6 — La Voz de Casa Solvei",
+          "time": 1780,
+          "timeFormatted": "29:40"
+        },
+        {
+          "title": "Capítulo 7 — La Duda del Forense",
+          "time": 2073,
+          "timeFormatted": "34:33"
+        },
+        {
+          "title": "Capítulo 8 — El Silencio de los Rotores",
+          "time": 2500,
+          "timeFormatted": "41:40"
+        },
+        {
+          "title": "Capítulo 9 — La Llegada",
+          "time": 2722,
+          "timeFormatted": "45:22"
+        },
+        {
+          "title": "Capítulo 10 — La Decisión",
+          "time": 2982,
+          "timeFormatted": "49:42"
+        },
+        {
+          "title": "Capítulo 11 — La Reacción en Cadena",
+          "time": 3252,
+          "timeFormatted": "54:12"
+        },
+        {
+          "title": "Capítulo 12 — El Informe Final",
+          "time": 3520,
+          "timeFormatted": "58:40"
+        }
+      ]
+    }
   }
 };
