@@ -1,4 +1,4 @@
-﻿/**
+/**
  * audio_ui.js — Motor de Micro-Feedback Sonoro Procedural (0 KB / Web Audio API)
  * SAPIENSIA CLAN Portal Oficial
  * Diseño y Síntesis: Hertz (Sonidista del Yermo)
@@ -162,8 +162,59 @@ class ClanAudioFeedback {
     osc.connect(gain);
     gain.connect(this.masterGain);
 
+  // 5. Conmutador Modo Arcade (Chiptune 8-bit coin & bootup)
+  playThemeArcade() {
+    if (this.isMuted) return;
+    this.ensureContext();
+    if (!this.ctx) return;
+
+    const t = this.ctx.currentTime;
+    const notes = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5
+    notes.forEach((freq, idx) => {
+      const startTime = t + (idx * 0.032);
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(freq, startTime);
+
+      gain.gain.setValueAtTime(0.022, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.075);
+
+      osc.connect(gain);
+      gain.connect(this.masterGain);
+
+      osc.start(startTime);
+      osc.stop(startTime + 0.085);
+      osc.onended = () => {
+        osc.disconnect();
+        gain.disconnect();
+      };
+    });
+  }
+
+  // 6. Conmutador Modo Antropo (Campana cristalina / micro-click editorial)
+  playThemeAntropo() {
+    if (this.isMuted) return;
+    this.ensureContext();
+    if (!this.ctx) return;
+
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(880, t);
+    osc.frequency.exponentialRampToValueAtTime(1320, t + 0.06);
+
+    gain.gain.setValueAtTime(0.04, t);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
+
+    osc.connect(gain);
+    gain.connect(this.masterGain);
+
     osc.start(t);
-    osc.stop(t + duration + 0.02);
+    osc.stop(t + 0.13);
     osc.onended = () => {
       osc.disconnect();
       gain.disconnect();

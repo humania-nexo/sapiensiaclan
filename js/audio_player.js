@@ -96,7 +96,12 @@
     }
 
     // Cargar metadatos
-    if (dom.coverImg) dom.coverImg.src = currentObra.cover;
+    const isArcade = document.documentElement.dataset.theme === 'arcade';
+    if (dom.coverImg) {
+      dom.coverImg.src = isArcade && currentObra.coverArcade ? currentObra.coverArcade : currentObra.cover;
+      dom.coverImg.dataset.coverAntropo = currentObra.cover;
+      dom.coverImg.dataset.coverArcade = currentObra.coverArcade || currentObra.cover;
+    }
     if (dom.bookTitle) dom.bookTitle.textContent = currentObra.title;
     if (dom.bookSubtitle) dom.bookSubtitle.textContent = currentObra.subtitle || '';
     

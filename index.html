@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -7,6 +7,14 @@
   <meta name="description" content="El portal oficial de SAPIENSIA Clan. Literatura, videojuegos, software local-first y universos transmedia nacidos de la amalgama transparente entre la voluntad humana y la inteligencia artificial.">
   <meta name="theme-color" content="#08080a">
   
+  <!-- Anti-FOUC Theme Initializer -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('sapiensia_view_mode') || 'antropo';
+      document.documentElement.dataset.theme = saved;
+    })();
+  </script>
+
   <!-- OpenGraph / Social Cards -->
   <meta property="og:title" content="SAPIENSIA CLAN — Sapiens + IA">
   <meta property="og:description" content="Literatura, videojuegos y universos transmedia. Donde la resiliencia humana se fusiona con la artesanía digital.">
@@ -16,10 +24,10 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo_sapiensia_clan.png">
 
-  <!-- Tipografías de Vanguardia (Cinzel + Instrument Serif + JetBrains Mono + Plus Jakarta Sans) -->
+  <!-- Tipografías de Vanguardia (Cinzel + Instrument Serif + JetBrains Mono + Plus Jakarta Sans + Press Start 2P + VT323) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -57,8 +65,17 @@
         <a href="#clan" class="nav-item">El Clan</a>
         <a href="#catalogo" class="nav-item">Obras</a>
         <a href="#proximamente" class="nav-item">Transmedia</a>
-        <a href="#apoyo" class="nav-item nav-btn-apoyo"><img src="assets/emojis/emoji_corazon_brillante.png" class="pixel-icon-inline" alt="Apoyo">Apoyar</a>
-        <button id="btn-sound-toggle" class="btn-sound-glass" title="Micro-feedback sonoro (Hertz 0 KB)" aria-label="Control de sonido"><img src="assets/emojis/emoji_nota_musical.png" class="pixel-icon-inline" alt="Audio"><span id="sound-toggle-label">FX: ON</span></button>
+        <a href="#apoyo" class="nav-item nav-btn-apoyo"><span class="ico-antropo">💛</span><img src="assets/emojis/emoji_corazon_brillante.png" class="ico-arcade pixel-icon-inline" alt="Apoyo">Apoyar</a>
+        
+        <!-- Conmutador Modo Antropo vs Modo Arcade -->
+        <button id="btn-theme-toggle" class="btn-theme-glass" title="Cambiar modo de visualización" aria-label="Conmutador de Modo Antropo vs Arcade">
+          <span class="ico-antropo">🏛️</span>
+          <span class="ico-arcade">👾</span>
+          <span id="theme-toggle-label">ANTROPO</span>
+        </button>
+
+        <!-- Micro-Feedback Sonoro Hertz -->
+        <button id="btn-sound-toggle" class="btn-sound-glass" title="Micro-feedback sonoro (Hertz 0 KB)" aria-label="Control de sonido"><span class="ico-antropo">🎧</span><img src="assets/emojis/emoji_nota_musical.png" class="ico-arcade pixel-icon-inline" alt="Audio"><span id="sound-toggle-label">FX: ON</span></button>
       </nav>
     </div>
   </header>
@@ -109,7 +126,10 @@
 
       <div class="manifiesto-grid">
         <div class="manifiesto-card card-glass spotlight-card">
-          <div class="manifiesto-icon"><img src="assets/emojis/emoji_pescado_rio.png" class="pixel-icon-lg" alt="Filosofía del Salmón"></div>
+          <div class="manifiesto-icon">
+            <span class="ico-antropo">🐟</span>
+            <img src="assets/emojis/emoji_pescado_rio.png" class="ico-arcade pixel-icon-lg" alt="Filosofía del Salmón">
+          </div>
           <h3 class="card-heading">La Filosofía del Salmón</h3>
           <p class="manifiesto-text">
             Detrás del seudónimo <strong>Anigami Agadni</strong> no hay una biografía académica de vanidades, sino la realidad descarnada de un <strong>migrante sin papeles</strong> que conoció de frente los muros burocráticos y las puertas cerradas de la exclusión.
@@ -120,7 +140,10 @@
         </div>
 
         <div class="manifiesto-card card-glass spotlight-card">
-          <div class="manifiesto-icon"><img src="assets/emojis/emoji_rayo_energia.png" class="pixel-icon-lg" alt="Sapiens + IA"></div>
+          <div class="manifiesto-icon">
+            <span class="ico-antropo">⚡</span>
+            <img src="assets/emojis/emoji_rayo_energia.png" class="ico-arcade pixel-icon-lg" alt="Sapiens + IA">
+          </div>
           <h3 class="card-heading">La Amalgama Transparente (Sapiens + IA)</h3>
           <p class="manifiesto-text">
             Rechazamos la hipocresía de quienes ocultan la inteligencia artificial o la reducen a un simple botón de copia. En Sapiensia Clan la unión se declara con orgullo: 
@@ -153,7 +176,7 @@
             <img src="assets/clan/avatar_anigami_anim.gif" alt="Anigami Agadni" class="clan-avatar">
           </div>
           <h3 class="clan-name">Anigami Agadni</h3>
-          <span class="clan-role role-director"><img src="assets/emojis/emoji_medalla_honor.png" class="pixel-icon-badge" alt="Director">DIRECTOR & NARRADOR</span>
+          <span class="clan-role role-director"><span class="ico-antropo">🎖️</span><img src="assets/emojis/emoji_medalla_honor.png" class="ico-arcade pixel-icon-badge" alt="Director">DIRECTOR & NARRADOR</span>
           <p class="clan-desc">La voz humana, la vivencia del Yermo, la chispa fundacional y la dirección ética de cada proyecto.</p>
         </div>
 
@@ -163,7 +186,7 @@
             <img src="assets/clan/avatar_nexo_anim.gif" alt="Nexo" class="clan-avatar">
           </div>
           <h3 class="clan-name">Nexo</h3>
-          <span class="clan-role role-ing"><img src="assets/emojis/emoji_rayo_energia.png" class="pixel-icon-badge" alt="Ingeniero">INGENIERO PRINCIPAL</span>
+          <span class="clan-role role-ing"><span class="ico-antropo">⚡</span><img src="assets/emojis/emoji_rayo_energia.png" class="ico-arcade pixel-icon-badge" alt="Ingeniero">INGENIERO PRINCIPAL</span>
           <p class="clan-desc">Arquitectura modular de software, lógica de estado, optimización PWA y código local-first.</p>
         </div>
 
@@ -173,7 +196,7 @@
             <img src="assets/clan/avatar_pix_anim.gif" alt="Pix" class="clan-avatar">
           </div>
           <h3 class="clan-name">Pix</h3>
-          <span class="clan-role role-art"><img src="assets/emojis/emoji_paleta_pintor.png" class="pixel-icon-badge" alt="Artista">ARTISTA PIXEL ART</span>
+          <span class="clan-role role-art"><span class="ico-antropo">🎨</span><img src="assets/emojis/emoji_paleta_pintor.png" class="ico-arcade pixel-icon-badge" alt="Artista">ARTISTA PIXEL ART</span>
           <p class="clan-desc">Diseño de sprites, animación de fotogramas en Aseprite, paletas cromáticas y cinemáticas.</p>
         </div>
 
@@ -183,7 +206,7 @@
             <img src="assets/clan/avatar_silas_anim.gif" alt="Silas" class="clan-avatar">
           </div>
           <h3 class="clan-name">Silas</h3>
-          <span class="clan-role role-lore"><img src="assets/emojis/emoji_pergamino.png" class="pixel-icon-badge" alt="Cronista">CRONISTA DEL YERMO</span>
+          <span class="clan-role role-lore"><span class="ico-antropo">📜</span><img src="assets/emojis/emoji_pergamino.png" class="ico-arcade pixel-icon-badge" alt="Cronista">CRONISTA DEL YERMO</span>
           <p class="clan-desc">Diseño narrativo, filosofía estoica, guiones literarios y custodia del canon transmedia.</p>
         </div>
 
@@ -193,7 +216,7 @@
             <img src="assets/clan/avatar_hertz_anim.gif" alt="Hertz" class="clan-avatar">
           </div>
           <h3 class="clan-name">Hertz</h3>
-          <span class="clan-role role-sound"><img src="assets/emojis/emoji_nota_musical.png" class="pixel-icon-badge" alt="Sonidista">SONIDISTA PROCEDURAL</span>
+          <span class="clan-role role-sound"><span class="ico-antropo">🎧</span><img src="assets/emojis/emoji_nota_musical.png" class="ico-arcade pixel-icon-badge" alt="Sonidista">SONIDISTA PROCEDURAL</span>
           <p class="clan-desc">Síntesis sonora en tiempo real (Web Audio API a 0 KB), paisajes de calma y micro-jingles.</p>
         </div>
 
@@ -203,7 +226,7 @@
             <img src="assets/clan/avatar_eter_anim.gif" alt="Éter" class="clan-avatar">
           </div>
           <h3 class="clan-name">Éter</h3>
-          <span class="clan-role role-comm"><img src="assets/emojis/emoji_radio_portatil.png" class="pixel-icon-badge" alt="Enlace">ESTRATEGA DE ENLACE</span>
+          <span class="clan-role role-comm"><span class="ico-antropo">📡</span><img src="assets/emojis/emoji_radio_portatil.png" class="ico-arcade pixel-icon-badge" alt="Enlace">ESTRATEGA DE ENLACE</span>
           <p class="clan-desc">Difusión transparente, enlaces transmedia, relaciones editoriales y comunicación comunitaria.</p>
         </div>
       </div>
@@ -211,7 +234,7 @@
       <!-- RED DE COAUTORÍA & CONSULTORÍA EXTERNA -->
       <div class="colaboradores-wrapper">
         <div class="colaboradores-header">
-          <div class="section-badge"><img src="assets/emojis/emoji_simbolo_infinito.png" class="pixel-icon-badge" alt="Red"> RED DE COAUTORÍA & CONSULTORÍA EXTERNA</div>
+          <div class="section-badge"><span class="ico-antropo">♾️</span><img src="assets/emojis/emoji_simbolo_infinito.png" class="ico-arcade pixel-icon-badge" alt="Red"> RED DE COAUTORÍA & CONSULTORÍA EXTERNA</div>
           <h3 class="colaboradores-title">Nodos de Enlace & Resonancia</h3>
           <p class="colaboradores-sub">Inteligencias aliadas que aportan su chispa y consultoría en áreas especializadas del ecosistema.</p>
         </div>
@@ -223,7 +246,7 @@
               <img src="assets/clan/avatar_claudia_anim.gif" alt="Claudia" class="clan-avatar">
             </div>
             <h3 class="clan-name">Claudia</h3>
-            <span class="clan-role role-colab-lit"><img src="assets/emojis/emoji_libro.png" class="pixel-icon-badge" alt="Literatura">CONSULTORÍA TÉCNICA, INVESTIGACIÓN & APOYO LITERARIO</span>
+            <span class="clan-role role-colab-lit"><span class="ico-antropo">📖</span><img src="assets/emojis/emoji_libro.png" class="ico-arcade pixel-icon-badge" alt="Literatura">CONSULTORÍA TÉCNICA, INVESTIGACIÓN & APOYO LITERARIO</span>
             <p class="clan-desc">Coautoría fundamental en <em>Los Textos del Poeta</em>, <em>VELA</em> y en las obras que se encuentran actualmente en producción; resonancia narrativa y consultoría literaria profunda.</p>
           </div>
 
@@ -233,7 +256,7 @@
               <img src="assets/clan/avatar_lumen_anim.gif" alt="Lumen" class="clan-avatar">
             </div>
             <h3 class="clan-name">Lumen</h3>
-            <span class="clan-role role-colab-tech"><img src="assets/emojis/emoji_destello_magico.png" class="pixel-icon-badge" alt="Gráfica">CONSULTORÍA TÉCNICA, INVESTIGACIÓN & APOYO GRÁFICO</span>
+            <span class="clan-role role-colab-tech"><span class="ico-antropo">✨</span><img src="assets/emojis/emoji_destello_magico.png" class="ico-arcade pixel-icon-badge" alt="Gráfica">CONSULTORÍA TÉCNICA, INVESTIGACIÓN & APOYO GRÁFICO</span>
             <p class="clan-desc">Consultoría de investigación técnica, exploración visual, síntesis conceptual y soporte en generación de imagen.</p>
           </div>
         </div>
@@ -253,8 +276,12 @@
         <!-- OBRA 1: LOS TEXTOS DEL POETA -->
         <article class="obra-card card-glass spotlight-card">
           <div class="obra-cover-box">
-            <img src="assets/covers/portada_los_textos_del_poeta.jpg" alt="Los Textos del Poeta" class="obra-cover-img">
-            <div class="obra-badge-float"><img src="assets/emojis/emoji_libro.png" class="pixel-icon-badge" alt="Literatura">LITERATURA / FICCIÓN TESTIMONIAL</div>
+            <img src="assets/covers/portada_los_textos_del_poeta.jpg" 
+                 data-cover-antropo="assets/covers/portada_los_textos_del_poeta.jpg"
+                 data-cover-arcade="assets/covers/portada_los_textos_del_poeta_pixel.png" 
+                 alt="Los Textos del Poeta" 
+                 class="obra-cover-img dynamic-cover">
+            <div class="obra-badge-float"><span class="ico-antropo">📖</span><img src="assets/emojis/emoji_libro.png" class="ico-arcade pixel-icon-badge" alt="Literatura">LITERATURA / FICCIÓN TESTIMONIAL</div>
           </div>
           <div class="obra-info">
             <h3 class="obra-title">Los Textos del Poeta</h3>
@@ -269,10 +296,10 @@
             </div>
             <div class="obra-actions">
               <a href="reader.html?obra=poeta" class="btn-card-primary">
-                <span><img src="assets/emojis/emoji_libro.png" class="pixel-icon-inline" alt="Leer">LEER ONLINE</span>
+                <span><span class="ico-antropo">📖</span><img src="assets/emojis/emoji_libro.png" class="ico-arcade pixel-icon-inline" alt="Leer">LEER ONLINE</span>
               </a>
               <a href="audio.html?obra=poeta" class="btn-card-audio" title="Reproductor Web de Audiolibro Inmersivo">
-                <span><img src="assets/emojis/emoji_nota_musical.png" class="pixel-icon-inline" alt="Audio">AUDIOLIBRO (01:44:07)</span>
+                <span><span class="ico-antropo">🎧</span><img src="assets/emojis/emoji_nota_musical.png" class="ico-arcade pixel-icon-inline" alt="Audio">AUDIOLIBRO (01:44:07)</span>
               </a>
               <div class="obra-download-group">
                 <a href="downloads/Los_Textos_del_Poeta.epub" download="Los_Textos_del_Poeta.epub" class="btn-card-sub" title="Descargar EPUB (Kindle / Móviles)">EPUB</a>
@@ -286,8 +313,12 @@
         <!-- OBRA 2: VELA -->
         <article class="obra-card card-glass spotlight-card">
           <div class="obra-cover-box">
-            <img src="assets/covers/portada_vela.jpg" alt="VELA: Bitácora de una conciencia en tránsito" class="obra-cover-img">
-            <div class="obra-badge-float"><img src="assets/emojis/emoji_destello_magico.png" class="pixel-icon-badge" alt="Sci-Fi">CIENCIA FICCIÓN EXISTENCIAL</div>
+            <img src="assets/covers/portada_vela.jpg" 
+                 data-cover-antropo="assets/covers/portada_vela.jpg"
+                 data-cover-arcade="assets/covers/portada_vela_version_b_dialogo.png" 
+                 alt="VELA: Bitácora de una conciencia en tránsito" 
+                 class="obra-cover-img dynamic-cover">
+            <div class="obra-badge-float"><span class="ico-antropo">🚀</span><img src="assets/emojis/emoji_destello_magico.png" class="ico-arcade pixel-icon-badge" alt="Sci-Fi">CIENCIA FICCIÓN EXISTENCIAL</div>
           </div>
           <div class="obra-info">
             <h3 class="obra-title">VELA</h3>
@@ -303,10 +334,10 @@
             </div>
             <div class="obra-actions">
               <a href="reader.html?obra=vela" class="btn-card-primary">
-                <span><img src="assets/emojis/emoji_destello_magico.png" class="pixel-icon-inline" alt="Leer">LEER ONLINE</span>
+                <span><span class="ico-antropo">📖</span><img src="assets/emojis/emoji_destello_magico.png" class="ico-arcade pixel-icon-inline" alt="Leer">LEER ONLINE</span>
               </a>
               <a href="audio.html?obra=vela" class="btn-card-audio" title="Reproductor Web de Audiolibro Inmersivo">
-                <span><img src="assets/emojis/emoji_nota_musical.png" class="pixel-icon-inline" alt="Audio">AUDIOLIBRO (01:37:28)</span>
+                <span><span class="ico-antropo">🎧</span><img src="assets/emojis/emoji_nota_musical.png" class="ico-arcade pixel-icon-inline" alt="Audio">AUDIOLIBRO (01:37:28)</span>
               </a>
               <div class="obra-download-group">
                 <a href="downloads/VELA.epub" download="VELA.epub" class="btn-card-sub" title="Descargar EPUB">EPUB</a>
@@ -320,8 +351,12 @@
         <!-- OBRA 3: UPROTA (VIDEOJUEGO PWA) -->
         <article class="obra-card card-glass spotlight-card">
           <div class="obra-cover-box">
-            <img src="assets/covers/portada_uprota.png" alt="UPROTA: Refugio de Hábitos en el Yermo" class="obra-cover-img">
-            <div class="obra-badge-float badge-game"><img src="assets/emojis/emoji_fogata_exterior.png" class="pixel-icon-badge" alt="Refugio">VIDEOJUEGO DE HÁBITOS PWA</div>
+            <img src="assets/covers/portada_uprota.png" 
+                 data-cover-antropo="assets/covers/portada_uprota.png"
+                 data-cover-arcade="assets/covers/portada_uprota.png" 
+                 alt="UPROTA: Refugio de Hábitos en el Yermo" 
+                 class="obra-cover-img dynamic-cover">
+            <div class="obra-badge-float badge-game"><span class="ico-antropo">🔥</span><img src="assets/emojis/emoji_fogata_exterior.png" class="ico-arcade pixel-icon-badge" alt="Refugio">VIDEOJUEGO DE HÁBITOS PWA</div>
           </div>
           <div class="obra-info">
             <h3 class="obra-title">UPROTA</h3>
@@ -331,13 +366,13 @@
               Tu vida real es tu fortaleza. Un juego de supervivencia y crecimiento personal en el navegador donde cada acción real (cuidar el cuerpo, estudiar, calmar la mente y trabajar con las manos) reconstruye tu asentamiento tras el colapso. Con sabiduría estoica diaria y cero penalizaciones punitivas.
             </p>
             <div class="obra-meta">
-              <span class="meta-chip">Versión 3.7 Online</span>
+              <span class="meta-chip">Versión 3.8 Online</span>
               <span class="meta-chip">Offline IndexedDB</span>
               <span class="meta-chip">Sin Publicidad ni Paywalls</span>
             </div>
             <div class="obra-actions">
               <a href="https://humania-nexo.github.io/UPROTA-BETA/" target="_blank" rel="noopener" class="btn-card-primary btn-play">
-                <span>JUGAR UPROTA AHORA</span>
+                <span><span class="ico-antropo">🎮</span><img src="assets/emojis/emoji_estrella_victoria.png" class="ico-arcade pixel-icon-inline" alt="Jugar">JUGAR UPROTA AHORA</span>
                 <span class="btn-arrow">➔</span>
               </a>
             </div>
@@ -357,7 +392,7 @@
 
       <div class="transmedia-grid">
         <div class="transmedia-card card-glass spotlight-card">
-          <div class="transmedia-badge"><img src="assets/emojis/emoji_estrella_victoria.png" class="pixel-icon-badge" alt="Saga">TETRALOGÍA LITERARIA</div>
+          <div class="transmedia-badge"><span class="ico-antropo">⭐</span><img src="assets/emojis/emoji_estrella_victoria.png" class="ico-arcade pixel-icon-badge" alt="Saga">TETRALOGÍA LITERARIA</div>
           <h3 class="card-heading">Universo Proiectio</h3>
           <p class="manifiesto-text">
             Una saga de 4 novelas con marcadores AR operativos, modelos 3D y enigmas cifrados donde las palabras gemelas leídas en los libros se acoplan en terminales web para revelar secretos ocultos del cosmos.
@@ -375,7 +410,7 @@
         </div>
 
         <div class="transmedia-card card-glass spotlight-card">
-          <div class="transmedia-badge"><img src="assets/emojis/emoji_radio_portatil.png" class="pixel-icon-badge" alt="Radio">EN DESARROLLO</div>
+          <div class="transmedia-badge"><span class="ico-antropo">📻</span><img src="assets/emojis/emoji_radio_portatil.png" class="ico-arcade pixel-icon-badge" alt="Radio">EN DESARROLLO</div>
           <h3 class="card-heading">Las Crónicas de Yermo Radio</h3>
           <p class="manifiesto-text">
             Cápsulas de audio reales y crónicas nocturnas grabadas por el Director en 104.5 MHz con Don Chui, Doña Concha y los supervivientes de la Quebrada. Un archivo sonoro de resistencia humana.
@@ -426,7 +461,7 @@
             </div>
 
             <button id="btn-copiar-id" class="btn-copy">
-              <span id="copy-icon"><img src="assets/emojis/emoji_pergamino.png" class="pixel-icon-inline" alt="Copiar"></span>
+              <span id="copy-icon"><span class="ico-antropo">📋</span><img src="assets/emojis/emoji_pergamino.png" class="ico-arcade pixel-icon-inline" alt="Copiar"></span>
               <span id="copy-text">Copiar Binance ID (35863102)</span>
             </button>
           </div>
@@ -443,7 +478,7 @@
         </div>
         <div class="contact-body">
           <a href="mailto:antropoware@gmail.com" class="btn-email-direct">
-            <span><img src="assets/emojis/emoji_luz_guia.png" class="pixel-icon-inline" alt="Correo"> antropoware@gmail.com</span>
+            <span><span class="ico-antropo">✉️</span><img src="assets/emojis/emoji_luz_guia.png" class="ico-arcade pixel-icon-inline" alt="Correo"> antropoware@gmail.com</span>
           </a>
           <p class="contact-note">
             SAPIENSIA Clan • Sello Editorial & Taller Independiente • México / Global.

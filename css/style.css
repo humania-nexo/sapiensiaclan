@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    SAPIENSIA CLAN — MASTER STYLESHEET (ARQUITECTURA MODULAR)
    Archivo: css/style.css
    Descripción: Orquestador central de hojas de estilo modulares.
@@ -24,3 +24,4 @@
 @import url('catalogo_obras.css');
 @import url('transmedia_donaciones.css');
 @import url('footer.css');
+@import url('theme_arcade.css');

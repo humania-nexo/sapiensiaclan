@@ -130,3 +130,54 @@ function initMobileMenu() {
     }
   });
 }
+
+/**
+ * 5. CONMUTADOR DE MODO ANTROPO / ARCADE
+ * Cambia el tema global entre 'antropo' (editorial/Unicode) y 'arcade' (retro pixel/sprites Pix).
+ */
+function initThemeToggle() {
+  const btn = document.getElementById('btn-theme-toggle');
+  const label = document.getElementById('theme-toggle-label');
+
+  const applyTheme = (theme, playAudio = false) => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('sapiensia_view_mode', theme);
+
+    if (label) {
+      label.textContent = theme === 'arcade' ? 'ARCADE' : 'ANTROPO';
+    }
+    if (btn) {
+      btn.setAttribute('title', theme === 'arcade' ? 'Modo Arcade Activo (Clic para volver a Modo Antropo)' : 'Modo Antropo Activo (Clic para cambiar a Modo Arcade Pixel)');
+      btn.classList.toggle('is-arcade', theme === 'arcade');
+    }
+
+    // Conmutar portadas de obras dinámicas
+    document.querySelectorAll('.dynamic-cover').forEach(img => {
+      const targetSrc = theme === 'arcade' ? img.dataset.coverArcade : img.dataset.coverAntropo;
+      if (targetSrc && img.getAttribute('src') !== targetSrc) {
+        img.setAttribute('src', targetSrc);
+      }
+    });
+
+    // Feedback sonoro procedural de Hertz
+    if (playAudio && window.clanAudio) {
+      if (theme === 'arcade') {
+        window.clanAudio.playThemeArcade();
+      } else {
+        window.clanAudio.playThemeAntropo();
+      }
+    }
+  };
+
+  // Inicializar estado guardado en LocalStorage o por defecto 'antropo'
+  const savedTheme = localStorage.getItem('sapiensia_view_mode') || 'antropo';
+  applyTheme(savedTheme, false);
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const active = document.documentElement.dataset.theme || 'antropo';
+      const nextTheme = active === 'arcade' ? 'antropo' : 'arcade';
+      applyTheme(nextTheme, true);
+    });
+  }
+}

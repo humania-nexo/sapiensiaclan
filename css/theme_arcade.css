@@ -1,0 +1,97 @@
+﻿/* ==========================================================================
+   SAPIENSIA CLAN — MÓDULO 10: MODO ARCADE & CONMUTADOR ANTROPO (RETRO PIXEL ART)
+   Archivo: css/theme_arcade.css
+   Descripción: Conmutador dual de emojis/sprites, tipografía pixelada y estética CRT.
+   Autor: Nexo (Ingeniero Principal)
+   ========================================================================== */
+
+/* --- CONMUTADOR DE ÍCONOS (ANTROPO vs ARCADE) --- */
+.ico-arcade {
+  display: none !important;
+}
+
+.ico-antropo {
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+/* En Modo Arcade, ocultar emojis Unicode y mostrar sprites de Pix */
+[data-theme="arcade"] .ico-antropo {
+  display: none !important;
+}
+
+[data-theme="arcade"] .ico-arcade {
+  display: inline-block !important;
+}
+
+/* Ajuste específico para íconos grandes de sección */
+.manifiesto-icon .ico-antropo {
+  font-size: 2.2rem;
+  margin-right: 0;
+  display: block;
+}
+
+.manifiesto-icon .ico-arcade {
+  display: none !important;
+}
+
+[data-theme="arcade"] .manifiesto-icon .ico-antropo {
+  display: none !important;
+}
+
+[data-theme="arcade"] .manifiesto-icon .ico-arcade {
+  display: inline-block !important;
+}
+
+/* --- OVERRIDES GLOBALES EN MODO ARCADE --- */
+[data-theme="arcade"] {
+  --border-glass: rgba(56, 189, 248, 0.25);
+  --border-glass-hover: rgba(56, 189, 248, 0.65);
+}
+
+[data-theme="arcade"] .section-badge,
+[data-theme="arcade"] .tech-badge,
+[data-theme="arcade"] .brand-tag,
+[data-theme="arcade"] .meta-chip,
+[data-theme="arcade"] .obra-badge-float,
+[data-theme="arcade"] .transmedia-badge,
+[data-theme="arcade"] .clan-role {
+  font-family: 'Press Start 2P', 'VT323', monospace;
+  font-size: 0.60rem;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+[data-theme="arcade"] .card-glass {
+  border-radius: 4px;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.1);
+}
+
+[data-theme="arcade"] .btn-primary,
+[data-theme="arcade"] .btn-secondary,
+[data-theme="arcade"] .btn-card-primary,
+[data-theme="arcade"] .btn-card-audio,
+[data-theme="arcade"] .btn-card-sub,
+[data-theme="arcade"] .btn-copy {
+  border-radius: 4px;
+}
+
+[data-theme="arcade"] .obra-cover-img {
+  image-rendering: pixelated;
+}
+
+/* Scanline CRT overlay sutil */
+[data-theme="arcade"] body::before {
+  content: " ";
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.015), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.015));
+  z-index: 9999;
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.65;
+}

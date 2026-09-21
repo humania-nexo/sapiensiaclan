@@ -33,7 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
   }
 
-  // 6. Iniciar enlaces de micro-audio procedural (js/audio_ui.js)
+  // 6. Iniciar conmutador de Modo Antropo vs Modo Arcade (js/interactive_ui.js)
+  if (typeof initThemeToggle === 'function') {
+    initThemeToggle();
+  }
+
+  // 7. Iniciar enlaces de micro-audio procedural (js/audio_ui.js)
   initAudioInteractions();
 });
 

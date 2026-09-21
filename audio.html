@@ -14,6 +14,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Anti-FOUC Theme Initializer -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('sapiensia_view_mode') || 'antropo';
+      document.documentElement.dataset.theme = saved;
+    })();
+  </script>
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/audio.css?v=2.0">
 </head>
@@ -42,7 +50,8 @@
       </div>
 
       <a id="btn-switch-reader" href="reader.html" class="btn-switch-reader" title="Cambiar al Lector de Texto">
-        <img src="assets/emojis/emoji_libro.png" class="pixel-icon-inline" alt="Leer">
+        <span class="ico-antropo">📖</span>
+        <img src="assets/emojis/emoji_libro.png" class="ico-arcade pixel-icon-inline" alt="Leer">
         <span>Leer en Lector Web</span>
       </a>
     </div>
@@ -166,7 +175,8 @@
         <div class="tracklist-container">
           <div class="tracklist-top">
             <h2 class="tracklist-header-title">
-              <img src="assets/emojis/emoji_nota_musical.png" class="pixel-icon-inline" alt="Tracklist">
+              <span class="ico-antropo">🎧</span>
+              <img src="assets/emojis/emoji_nota_musical.png" class="ico-arcade pixel-icon-inline" alt="Tracklist">
               Índice de Capítulos & Saltos Directos
             </h2>
             <span id="tracklist-count" class="tracklist-badge">24 CAPÍTULOS</span>
