@@ -1,11 +1,14 @@
 ﻿/* ==========================================================================
-   SAPIENSIA CLAN — MÓDULO 10: MODO ARCADE & CONMUTADOR ANTROPO (RETRO PIXEL ART)
+   SAPIENSIA CLAN — MÓDULO 10: MODO ARCADE (100% RETRO PIXEL ART TOTAL)
    Archivo: css/theme_arcade.css
-   Descripción: Conmutador dual de emojis/sprites, tipografía pixelada y estética CRT.
-   Autor: Nexo (Ingeniero Principal)
+   Descripción: Transformación total a estética Arcade 8/16-bits.
+                Tipografías pixel, bordes dentados/biselados, cajas retro y cero bordes suaves.
+   Autor: Nexo (Ingeniero Principal) & Pix (Artista Pixel Art)
    ========================================================================== */
 
-/* --- CONMUTADOR DE ÍCONOS (ANTROPO vs ARCADE) --- */
+/* ==========================================================================
+   1. CONMUTACIÓN DE ICONOGRAFÍA (ANTROPO vs ARCADE)
+   ========================================================================== */
 .ico-arcade {
   display: none !important;
 }
@@ -16,7 +19,6 @@
   vertical-align: -1px;
 }
 
-/* En Modo Arcade, ocultar emojis Unicode y mostrar sprites de Pix */
 [data-theme="arcade"] .ico-antropo {
   display: none !important;
 }
@@ -25,9 +27,8 @@
   display: inline-block !important;
 }
 
-/* Ajuste específico para íconos grandes de sección */
 .manifiesto-icon .ico-antropo {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   margin-right: 0;
   display: block;
 }
@@ -44,44 +45,437 @@
   display: inline-block !important;
 }
 
-/* --- OVERRIDES GLOBALES EN MODO ARCADE --- */
-[data-theme="arcade"] {
-  --border-glass: rgba(56, 189, 248, 0.25);
-  --border-glass-hover: rgba(56, 189, 248, 0.65);
+/* ==========================================================================
+   2. ELIMINACIÓN UNIVERSAL DE BORDES REDONDOS (CERO CURVAS SUAVES)
+   ========================================================================== */
+[data-theme="arcade"],
+[data-theme="arcade"] * {
+  border-radius: 0 !important;
 }
 
-[data-theme="arcade"] .section-badge,
+/* ==========================================================================
+   3. TIPOGRAFÍAS 100% PIXEL ART (PRESS START 2P + SILKSCREEN + VT323)
+   ========================================================================== */
+[data-theme="arcade"] body {
+  font-family: 'VT323', monospace;
+  font-size: 1.38rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  background-color: #07080b;
+}
+
+/* --- TÍTULOS Y ENCABEZADOS ARCADE --- */
+[data-theme="arcade"] .brand-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: #fbbf24;
+  text-shadow: 2px 2px 0 #000;
+}
+
+[data-theme="arcade"] .hero-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.35rem, 3.2vw, 2.2rem);
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 3px 3px 0 #000, 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+[data-theme="arcade"] .highlight-serif {
+  font-family: 'Silkscreen', 'Press Start 2P', monospace;
+  font-style: normal;
+  font-weight: 700;
+  color: #fbbf24;
+  background: none;
+  -webkit-text-fill-color: initial;
+  text-shadow: 2px 2px 0 #000, 0 0 12px rgba(245, 158, 11, 0.8);
+}
+
+[data-theme="arcade"] .section-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.15rem, 2.5vw, 1.7rem);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: #f4f4f5;
+  text-shadow: 2px 2px 0 #000, 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+[data-theme="arcade"] .card-heading,
+[data-theme="arcade"] .clan-name,
+[data-theme="arcade"] .obra-title,
+[data-theme="arcade"] .colaboradores-title,
+[data-theme="arcade"] .donacion-heading,
+[data-theme="arcade"] .contact-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+}
+
+[data-theme="arcade"] .obra-title {
+  font-size: 1.25rem;
+  color: #fbbf24;
+}
+
+[data-theme="arcade"] .obra-subtitle-tag {
+  font-family: 'Silkscreen', 'VT323', monospace;
+  font-style: normal;
+  font-size: 1.15rem;
+  color: #38bdf8;
+  letter-spacing: 0.05em;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* --- PÁRRAFOS Y DESCRIPCIONES EN VT323 DE ALTA DEFINICIÓN --- */
+[data-theme="arcade"] .hero-subtitle,
+[data-theme="arcade"] .section-sub,
+[data-theme="arcade"] .manifiesto-text,
+[data-theme="arcade"] .manifiesto-text-sm,
+[data-theme="arcade"] .formula-part,
+[data-theme="arcade"] .clan-desc,
+[data-theme="arcade"] .colaboradores-sub,
+[data-theme="arcade"] .obra-synopsis,
+[data-theme="arcade"] .obra-author,
+[data-theme="arcade"] .donacion-desc,
+[data-theme="arcade"] .contact-sub,
+[data-theme="arcade"] .contact-note,
+[data-theme="arcade"] .footer-quote,
+[data-theme="arcade"] .footer-copy {
+  font-family: 'VT323', monospace;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  color: #d4d4d8;
+}
+
+[data-theme="arcade"] .hero-subtitle {
+  font-size: 1.55rem;
+  color: #e4e4e7;
+}
+
+/* --- BADGES, CHIPS Y METADATOS BITMAP --- */
 [data-theme="arcade"] .tech-badge,
+[data-theme="arcade"] .section-badge,
 [data-theme="arcade"] .brand-tag,
+[data-theme="arcade"] .clan-role,
+[data-theme="arcade"] .obra-badge-float,
+[data-theme="arcade"] .transmedia-badge,
+[data-theme="arcade"] .meta-chip,
+[data-theme="arcade"] .manifiesto-banner-caption,
+[data-theme="arcade"] .status-box,
+[data-theme="arcade"] .detail-row,
+[data-theme="arcade"] .qr-caption {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   4. BORDES PIXELADOS, BISELES 8/16-BITS & CAJAS ARCADE
+   ========================================================================== */
+
+/* --- TARJETAS GLASS TRANSFORMADAS A CAJAS DE DIÁLOGO RPG / ARCADE --- */
+[data-theme="arcade"] .card-glass,
+[data-theme="arcade"] .clan-card,
+[data-theme="arcade"] .obra-card,
+[data-theme="arcade"] .manifiesto-card,
+[data-theme="arcade"] .transmedia-card,
+[data-theme="arcade"] .donacion-box,
+[data-theme="arcade"] .contact-card {
+  background: #0a0d14 !important;
+  border: 3px solid #1e293b !important;
+  box-shadow: 
+    inset 2px 2px 0 0 rgba(255, 255, 255, 0.15),
+    inset -2px -2px 0 0 rgba(0, 0, 0, 0.8),
+    4px 4px 0 0 #000,
+    0 0 16px rgba(56, 189, 248, 0.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-theme="arcade"] .card-glass:hover {
+  border-color: #38bdf8 !important;
+  box-shadow: 
+    inset 2px 2px 0 0 #7dd3fc,
+    inset -2px -2px 0 0 #0369a1,
+    6px 6px 0 0 #000,
+    0 0 24px rgba(56, 189, 248, 0.3) !important;
+}
+
+/* --- TECH BADGE HERO RETRO --- */
+[data-theme="arcade"] .tech-badge {
+  background: #1c1304 !important;
+  border: 2px solid #f59e0b !important;
+  box-shadow: 
+    inset 2px 2px 0 #fde68a,
+    inset -2px -2px 0 #78350f,
+    3px 3px 0 #000 !important;
+  color: #fbbf24 !important;
+  padding: 8px 16px;
+}
+
+/* --- CHIPS Y BADGES PIXELADOS --- */
 [data-theme="arcade"] .meta-chip,
 [data-theme="arcade"] .obra-badge-float,
 [data-theme="arcade"] .transmedia-badge,
-[data-theme="arcade"] .clan-role {
-  font-family: 'Press Start 2P', 'VT323', monospace;
-  font-size: 0.60rem;
-  letter-spacing: 0.08em;
-  line-height: 1.4;
+[data-theme="arcade"] .clan-role,
+[data-theme="arcade"] .status-box {
+  background: #030712 !important;
+  border: 2px solid #38bdf8 !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #7dd3fc, inset -1px -1px 0 #0369a1 !important;
+  color: #38bdf8 !important;
 }
 
-[data-theme="arcade"] .card-glass {
-  border-radius: 4px;
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.1);
+[data-theme="arcade"] .clan-role.role-director,
+[data-theme="arcade"] .obra-badge-float {
+  border-color: #f59e0b !important;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #fde68a, inset -1px -1px 0 #78350f !important;
+  color: #fbbf24 !important;
 }
 
-[data-theme="arcade"] .btn-primary,
-[data-theme="arcade"] .btn-secondary,
+[data-theme="arcade"] .gold-line {
+  width: 80px;
+  height: 4px;
+  background: #f59e0b;
+  box-shadow: 0 2px 0 #000, 0 -2px 0 #000;
+}
+
+/* ==========================================================================
+   5. BOTONES PIXEL ART CON RELIEVE Y BISEL RETRO 8/16-BITS
+   ========================================================================== */
+
+/* --- BOTÓN PRIMARIO (HERO / CTA ÁMBAR RETRO) --- */
+[data-theme="arcade"] .btn-primary {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.72rem !important;
+  background: #d97706 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 
+    inset 3px 3px 0 #fde68a,
+    inset -3px -3px 0 #78350f,
+    4px 4px 0 #000 !important;
+  color: #fff !important;
+  text-shadow: 1px 1px 0 #000 !important;
+  padding: 14px 22px !important;
+  transition: none !important;
+}
+
+[data-theme="arcade"] .btn-primary:hover {
+  background: #f59e0b !important;
+  box-shadow: 
+    inset 3px 3px 0 #fff,
+    inset -3px -3px 0 #92400e,
+    5px 5px 0 #000 !important;
+  transform: translate(-1px, -1px) !important;
+}
+
+[data-theme="arcade"] .btn-primary:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 
+    inset 3px 3px 0 #78350f,
+    1px 1px 0 #000 !important;
+}
+
+/* --- BOTÓN SECUNDARIO (HERO GRIS ARCADE) --- */
+[data-theme="arcade"] .btn-secondary {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.72rem !important;
+  background: #1e293b !important;
+  border: 2px solid #000 !important;
+  box-shadow: 
+    inset 3px 3px 0 #64748b,
+    inset -3px -3px 0 #020617,
+    4px 4px 0 #000 !important;
+  color: #f4f4f5 !important;
+  text-shadow: 1px 1px 0 #000 !important;
+  padding: 14px 22px !important;
+  transition: none !important;
+}
+
+[data-theme="arcade"] .btn-secondary:hover {
+  background: #334155 !important;
+  box-shadow: 
+    inset 3px 3px 0 #94a3b8,
+    inset -3px -3px 0 #0f172a,
+    5px 5px 0 #000 !important;
+  transform: translate(-1px, -1px) !important;
+}
+
+[data-theme="arcade"] .btn-secondary:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 
+    inset 3px 3px 0 #020617,
+    1px 1px 0 #000 !important;
+}
+
+/* --- BOTONES DE CATÁLOGO (LEER, AUDIO, JUGAR) --- */
 [data-theme="arcade"] .btn-card-primary,
-[data-theme="arcade"] .btn-card-audio,
-[data-theme="arcade"] .btn-card-sub,
-[data-theme="arcade"] .btn-copy {
-  border-radius: 4px;
+[data-theme="arcade"] .btn-play {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.65rem !important;
+  background: #0284c7 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 
+    inset 2px 2px 0 #7dd3fc,
+    inset -2px -2px 0 #0369a1,
+    3px 3px 0 #000 !important;
+  color: #fff !important;
+  text-shadow: 1px 1px 0 #000 !important;
+  padding: 10px 16px !important;
+  transition: none !important;
 }
 
-[data-theme="arcade"] .obra-cover-img {
-  image-rendering: pixelated;
+[data-theme="arcade"] .btn-play {
+  background: #d97706 !important;
+  box-shadow: 
+    inset 2px 2px 0 #fde68a,
+    inset -2px -2px 0 #78350f,
+    3px 3px 0 #000 !important;
 }
 
-/* Scanline CRT overlay sutil */
+[data-theme="arcade"] .btn-card-primary:hover,
+[data-theme="arcade"] .btn-play:hover {
+  filter: brightness(1.15);
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 
+    inset 2px 2px 0 #fff,
+    inset -2px -2px 0 #000,
+    4px 4px 0 #000 !important;
+}
+
+[data-theme="arcade"] .btn-card-primary:active,
+[data-theme="arcade"] .btn-play:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: inset 2px 2px 0 #000, 1px 1px 0 #000 !important;
+}
+
+[data-theme="arcade"] .btn-card-audio {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.65rem !important;
+  background: #b45309 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 
+    inset 2px 2px 0 #fde68a,
+    inset -2px -2px 0 #78350f,
+    3px 3px 0 #000 !important;
+  color: #fff !important;
+  text-shadow: 1px 1px 0 #000 !important;
+  padding: 10px 16px !important;
+  transition: none !important;
+}
+
+[data-theme="arcade"] .btn-card-sub {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.58rem !important;
+  background: #0f172a !important;
+  border: 2px solid #000 !important;
+  box-shadow: 
+    inset 2px 2px 0 #475569,
+    inset -2px -2px 0 #020617,
+    2px 2px 0 #000 !important;
+  color: #cbd5e1 !important;
+  padding: 8px 10px !important;
+  transition: none !important;
+}
+
+[data-theme="arcade"] .btn-copy,
+[data-theme="arcade"] .btn-email-direct {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.65rem !important;
+  background: #0f172a !important;
+  border: 2px solid #000 !important;
+  box-shadow: 
+    inset 2px 2px 0 #38bdf8,
+    inset -2px -2px 0 #020617,
+    3px 3px 0 #000 !important;
+  color: #38bdf8 !important;
+  transition: none !important;
+}
+
+/* --- BOTONES DE LA BARRA DE NAVEGACIÓN --- */
+[data-theme="arcade"] .nav-item {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.62rem !important;
+  letter-spacing: 0.05em;
+  color: #a1a1aa;
+}
+
+[data-theme="arcade"] .nav-item:hover {
+  color: #fbbf24 !important;
+}
+
+[data-theme="arcade"] .nav-btn-apoyo {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.62rem !important;
+  background: #78350f !important;
+  border: 2px solid #000 !important;
+  box-shadow: 
+    inset 2px 2px 0 #fbbf24,
+    inset -2px -2px 0 #451a03,
+    2px 2px 0 #000 !important;
+  color: #fef08a !important;
+  padding: 6px 12px !important;
+}
+
+[data-theme="arcade"] .btn-sound-glass,
+[data-theme="arcade"] .btn-theme-glass {
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.60rem !important;
+  background: #0f172a !important;
+  border: 2px solid #000 !important;
+  box-shadow: 
+    inset 2px 2px 0 #38bdf8,
+    inset -2px -2px 0 #020617,
+    2px 2px 0 #000 !important;
+  color: #38bdf8 !important;
+  padding: 6px 10px !important;
+}
+
+[data-theme="arcade"] .btn-theme-glass.is-arcade {
+  background: #0369a1 !important;
+  box-shadow: 
+    inset 2px 2px 0 #38bdf8,
+    inset -2px -2px 0 #082f49,
+    2px 2px 0 #000 !important;
+  color: #fff !important;
+}
+
+/* ==========================================================================
+   6. RENDERIZADO DE ASSETS, AVATARES Y PORTADAS PIXEL
+   ========================================================================== */
+[data-theme="arcade"] .obra-cover-img,
+[data-theme="arcade"] .manifiesto-pixel-banner,
+[data-theme="arcade"] .clan-avatar,
+[data-theme="arcade"] .brand-logo,
+[data-theme="arcade"] .qr-image {
+  image-rendering: pixelated !important;
+}
+
+[data-theme="arcade"] .obra-cover-box {
+  border: 3px solid #000 !important;
+  box-shadow: 4px 4px 0 #1e293b !important;
+}
+
+[data-theme="arcade"] .avatar-box {
+  border: 2px solid #f59e0b !important;
+  box-shadow: 2px 2px 0 #000 !important;
+}
+
+[data-theme="arcade"] .formula-box,
+[data-theme="arcade"] .binance-details-card {
+  background: #030712 !important;
+  border: 2px solid #38bdf8 !important;
+  box-shadow: inset 1px 1px 0 #7dd3fc, inset -1px -1px 0 #0369a1, 3px 3px 0 #000 !important;
+}
+
+/* ==========================================================================
+   7. CAPA RETRO SCANLINES CRT (0 CPU OVERHEAD)
+   ========================================================================== */
 [data-theme="arcade"] body::before {
   content: " ";
   position: fixed;
@@ -89,9 +483,11 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.015), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.015));
-  z-index: 9999;
-  background-size: 100% 3px, 6px 100%;
+  background: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+  z-index: 99999;
+  background-size: 100% 4px, 6px 100%;
   pointer-events: none;
-  opacity: 0.65;
+  opacity: 0.8;
 }
