@@ -706,3 +706,25 @@
   pointer-events: none;
   opacity: 0.8;
 }
+
+/* ==========================================================================
+   8. BADGE DE SEGURIDAD RETRO ARCADE (CLOUDFLARE SECURE EDGE)
+   ========================================================================== */
+[data-theme="arcade"] .footer-security-badge {
+  border-radius: 0 !important;
+  background: #021a12 !important;
+  border: 1px solid #10b981 !important;
+  color: #34d399 !important;
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.52rem !important;
+  letter-spacing: 0.5px;
+  box-shadow: 2px 2px 0 #000, inset 1px 1px 0 #6ee7b7;
+  padding: 6px 10px !important;
+}
+
+[data-theme="arcade"] .security-status-dot {
+  border-radius: 0 !important;
+  background: #34d399 !important;
+  box-shadow: 0 0 6px #34d399 !important;
+}
+
