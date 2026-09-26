@@ -1,0 +1,6 @@
+# robots.txt para SAPIENSIA CLAN — sapiensiaclan.com
+User-agent: *
+Allow: /
+
+# Sitemap oficial
+Sitemap: https://sapiensiaclan.com/sitemap.xml
