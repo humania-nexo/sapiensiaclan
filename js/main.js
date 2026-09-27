@@ -8,8 +8,10 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Iniciar Canvas de Partículas Estelares (js/stardust.js)
-  if (typeof initStardustCanvas === 'function') {
+  // 1. Iniciar Canvas de Ascuas de Forja (js/forja_embers.js)
+  if (typeof initForjaEmbers === 'function') {
+    initForjaEmbers();
+  } else if (typeof initStardustCanvas === 'function') {
     initStardustCanvas();
   }
 

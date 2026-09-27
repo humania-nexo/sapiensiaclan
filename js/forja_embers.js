@@ -1,7 +1,7 @@
 /**
  * ==========================================================================
  * SAPIENSIA CLAN — MOTOR DE ASCUAS DE FORJA & VIENTO REACTIVO (SAPIENS + IA)
- * Archivo: js/stardust.js
+ * Archivo: js/forja_embers.js
  * Descripción: Sistema de ascuas doradas flotantes y corriente de viento reactiva
  *              al cursor. Cero líneas, cero saturación, 100% fluido.
  * Performance: 60-120 FPS fijos • O(N) ultra ligero • 0 KB dependencias
@@ -9,10 +9,10 @@
  * ==========================================================================
  */
 
-function initStardustCanvas() {
+function initForjaEmbers() {
   const canvas = document.getElementById('stardust-canvas');
-  if (!canvas || canvas._initialized) return;
-  canvas._initialized = true;
+  if (!canvas || canvas._forjaInitialized) return;
+  canvas._forjaInitialized = true;
 
   const ctx = canvas.getContext('2d', { alpha: true });
   let width = 0;
@@ -35,7 +35,7 @@ function initStardustCanvas() {
   };
 
   const embers = [];
-  const MAX_EMBERS = 55;
+  const MAX_EMBERS = 50;
 
   class ForgeEmber {
     constructor(initial = false) {
@@ -43,12 +43,12 @@ function initStardustCanvas() {
     }
 
     reset(initial = false) {
-      this.x = Math.random() * width;
-      this.y = initial ? Math.random() * height : height + Math.random() * 20;
+      this.x = Math.random() * (width || window.innerWidth);
+      this.y = initial ? Math.random() * (height || window.innerHeight) : (height || window.innerHeight) + Math.random() * 20;
       
       // Velocidad de flotación vertical suave
-      this.baseVy = -(Math.random() * 0.65 + 0.35); // Flota hacia arriba
-      this.baseVx = (Math.random() - 0.5) * 0.3;     // Ligera oscilación lateral
+      this.baseVy = -(Math.random() * 0.65 + 0.35); // Flota suavemente hacia arriba
+      this.baseVx = (Math.random() - 0.5) * 0.25;    // Balanceo lateral
       this.vx = this.baseVx;
       this.vy = this.baseVy;
 
@@ -81,7 +81,7 @@ function initStardustCanvas() {
       this.pulse += this.pulseSpeed;
       this.swayAngle += this.swaySpeed;
 
-      // Movimiento natural ondulante (como humo / ascuas en convección)
+      // Movimiento natural ondulante (convección)
       const swayForce = Math.sin(this.swayAngle) * 0.15;
 
       // Interacción con el cursor (Corriente de viento física suave)
@@ -269,11 +269,12 @@ function initStardustCanvas() {
   loop();
 }
 
-// Exportación y auto-inicialización segura
-window.initStardustCanvas = initStardustCanvas;
+// Exportaciones globales y auto-inicialización
+window.initForjaEmbers = initForjaEmbers;
+window.initStardustCanvas = initForjaEmbers;
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initStardustCanvas);
+  document.addEventListener('DOMContentLoaded', initForjaEmbers);
 } else {
-  initStardustCanvas();
+  initForjaEmbers();
 }
