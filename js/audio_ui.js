@@ -162,30 +162,84 @@ class ClanAudioFeedback {
     osc.connect(gain);
     gain.connect(this.masterGain);
 
-  // 5. Conmutador Modo Arcade (Chiptune 8-bit coin & bootup)
+    osc.start(t);
+    osc.stop(t + duration);
+    osc.onended = () => {
+      osc.disconnect();
+      gain.disconnect();
+    };
+  }
+
+  // 5. Metamorfosis a Modo Arcade (Ignición 8-bit, De-gauss CRT & Chiptune Fanfare)
   playThemeArcade() {
     if (this.isMuted) return;
     this.ensureContext();
     if (!this.ctx) return;
 
     const t = this.ctx.currentTime;
-    const notes = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5
+
+    // Fase A: Ruido Blanco CRT Degauss / Estática (0ms - 55ms)
+    try {
+      const bufferSize = Math.floor(this.ctx.sampleRate * 0.055);
+      const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+      }
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = noiseBuffer;
+
+      const noiseFilter = this.ctx.createBiquadFilter();
+      noiseFilter.type = 'bandpass';
+      noiseFilter.frequency.setValueAtTime(2200, t);
+      noiseFilter.frequency.exponentialRampToValueAtTime(320, t + 0.055);
+      noiseFilter.Q.setValueAtTime(3, t);
+
+      const noiseGain = this.ctx.createGain();
+      noiseGain.gain.setValueAtTime(0.035, t);
+      noiseGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.055);
+
+      noise.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      noiseGain.connect(this.masterGain);
+
+      noise.start(t);
+      noise.stop(t + 0.06);
+    } catch (e) {
+      // Fallback si createBuffer falla
+    }
+
+    // Fase B: Laser Warp / Pitch Drop (20ms - 90ms)
+    const warpOsc = this.ctx.createOscillator();
+    const warpGain = this.ctx.createGain();
+    warpOsc.type = 'sawtooth';
+    warpOsc.frequency.setValueAtTime(950, t + 0.015);
+    warpOsc.frequency.exponentialRampToValueAtTime(110, t + 0.09);
+    warpGain.gain.setValueAtTime(0.025, t + 0.015);
+    warpGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.095);
+    warpOsc.connect(warpGain);
+    warpGain.connect(this.masterGain);
+    warpOsc.start(t + 0.015);
+    warpOsc.stop(t + 0.1);
+
+    // Fase C: Arpegio Neón 8-bit Ascendente (90ms - 320ms)
+    const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // C5, E5, G5, C6, E6
     notes.forEach((freq, idx) => {
-      const startTime = t + (idx * 0.032);
+      const startTime = t + 0.08 + (idx * 0.038);
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
 
       osc.type = 'square';
       osc.frequency.setValueAtTime(freq, startTime);
 
-      gain.gain.setValueAtTime(0.022, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.075);
+      gain.gain.setValueAtTime(0.03, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.09);
 
       osc.connect(gain);
       gain.connect(this.masterGain);
 
       osc.start(startTime);
-      osc.stop(startTime + 0.085);
+      osc.stop(startTime + 0.095);
       osc.onended = () => {
         osc.disconnect();
         gain.disconnect();
@@ -193,32 +247,51 @@ class ClanAudioFeedback {
     });
   }
 
-  // 6. Conmutador Modo Antropo (Campana cristalina / micro-click editorial)
+  // 6. Metamorfosis a Modo Antropo (Restauración Orgánica, Swell Senoidal & Campanas Armónicas)
   playThemeAntropo() {
     if (this.isMuted) return;
     this.ensureContext();
     if (!this.ctx) return;
 
     const t = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
 
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(880, t);
-    osc.frequency.exponentialRampToValueAtTime(1320, t + 0.06);
+    // Fase A: Swell Senoidal Armónico Ascendente (0ms - 120ms)
+    const swellOsc = this.ctx.createOscillator();
+    const swellGain = this.ctx.createGain();
+    swellOsc.type = 'sine';
+    swellOsc.frequency.setValueAtTime(260, t);
+    swellOsc.frequency.exponentialRampToValueAtTime(880, t + 0.12);
+    swellGain.gain.setValueAtTime(0.015, t);
+    swellGain.gain.linearRampToValueAtTime(0.045, t + 0.08);
+    swellGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+    swellOsc.connect(swellGain);
+    swellGain.connect(this.masterGain);
+    swellOsc.start(t);
+    swellOsc.stop(t + 0.23);
 
-    gain.gain.setValueAtTime(0.04, t);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
+    // Fase B: Campana Armónica Cristalina de Mármol (80ms - 420ms)
+    const bellNotes = [587.33, 880.00, 1479.98]; // D5, A5, F#6 (Acorde luminoso Re Mayor)
+    bellNotes.forEach((freq, idx) => {
+      const bellStartTime = t + 0.06 + (idx * 0.025);
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
 
-    osc.connect(gain);
-    gain.connect(this.masterGain);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, bellStartTime);
 
-    osc.start(t);
-    osc.stop(t + 0.13);
-    osc.onended = () => {
-      osc.disconnect();
-      gain.disconnect();
-    };
+      gain.gain.setValueAtTime(0.035, bellStartTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, bellStartTime + 0.35);
+
+      osc.connect(gain);
+      gain.connect(this.masterGain);
+
+      osc.start(bellStartTime);
+      osc.stop(bellStartTime + 0.36);
+      osc.onended = () => {
+        osc.disconnect();
+        gain.disconnect();
+      };
+    });
   }
 }
 

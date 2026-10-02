@@ -132,13 +132,26 @@ function initMobileMenu() {
 }
 
 /**
- * 5. CONMUTADOR DE MODO ANTROPO / ARCADE
- * Cambia el tema global entre 'antropo' (editorial/Unicode) y 'arcade' (retro pixel/sprites Pix).
+/**
+ * 5. CONMUTADOR DE MODO ANTROPO / ARCADE (CON METAMORFOSIS CINEMÁTICA)
+ * Cambia el tema global entre 'antropo' (editorial/Unicode) y 'arcade' (retro pixel/sprites Pix)
+ * con screen shake, aberración cromática, barrido CRT y paisaje sonoro de Hertz.
  */
 function initThemeToggle() {
   const btn = document.getElementById('btn-theme-toggle');
 
-  const applyTheme = (theme, playAudio = false) => {
+  // Asegurar overlay de metamorfosis en el DOM
+  let warpOverlay = document.querySelector('.theme-warp-overlay');
+  if (!warpOverlay) {
+    warpOverlay = document.createElement('div');
+    warpOverlay.className = 'theme-warp-overlay';
+    warpOverlay.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(warpOverlay);
+  }
+
+  let isWarping = false;
+
+  const updateUIElements = (theme) => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('sapiensia_view_mode', theme);
 
@@ -156,15 +169,47 @@ function initThemeToggle() {
         img.setAttribute('src', targetSrc);
       }
     });
+  };
 
-    // Feedback sonoro procedural de Hertz
-    if (playAudio && window.clanAudio) {
+  const applyTheme = (theme, animate = false) => {
+    if (!animate) {
+      updateUIElements(theme);
+      return;
+    }
+
+    if (isWarping) return;
+    isWarping = true;
+
+    // 1. Iniciar Paisaje Sonoro Procedural de Hertz de inmediato
+    if (window.clanAudio) {
       if (theme === 'arcade') {
         window.clanAudio.playThemeArcade();
       } else {
         window.clanAudio.playThemeAntropo();
       }
     }
+
+    // 2. Disparar Metamorfosis Visual (Screen Shake + Glitch RGB + Barrido CRT)
+    document.body.classList.remove('theme-metamorphosis');
+    warpOverlay.classList.remove('is-warping');
+
+    // Forzar reflujo para reiniciar animaciones
+    void document.body.offsetWidth;
+
+    document.body.classList.add('theme-metamorphosis');
+    warpOverlay.classList.add('is-warping');
+
+    // 3. Mutación del DOM en el ápice de la distorsión (~140ms)
+    setTimeout(() => {
+      updateUIElements(theme);
+    }, 140);
+
+    // 4. Conclusión y limpieza tras completar el barrido (~400ms)
+    setTimeout(() => {
+      document.body.classList.remove('theme-metamorphosis');
+      warpOverlay.classList.remove('is-warping');
+      isWarping = false;
+    }, 420);
   };
 
   // Inicializar estado guardado en LocalStorage o por defecto 'antropo'
