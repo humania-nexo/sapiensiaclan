@@ -114,7 +114,7 @@
     if (dom.bookSubtitle) dom.bookSubtitle.textContent = currentObra.subtitle || '';
     
     if (dom.bookAuthor) {
-      dom.bookAuthor.innerHTML = `Voz & Narración: <span class="author-gold">${(currentObra.audio && currentObra.audio.narrator) || 'Anigami Agadni'}</span> • Coautoría con <img src="assets/clan/avatar_claudia_anim.gif" class="pixel-icon-inline" alt="Claudia"> Claudia`;
+      dom.bookAuthor.innerHTML = `Voz & Narración: <span class="author-gold">${(currentObra.audio && currentObra.audio.narrator) || 'Anigami Agadni'}</span> • powered by <img src="assets/clan/avatar_claudia_anim.gif" class="pixel-icon-inline" alt="Claudia"> Claudia`;
     }
 
     if (dom.metaDuration) dom.metaDuration.textContent = (currentObra.audio && currentObra.audio.duration) || '01:44:00';
