@@ -1,0 +1,42 @@
+# Sapiensia Clan
+
+> Sapiensia Clan (sapiensiaclan.com) es un taller creativo, sello editorial independiente y estudio de videojuegos transmedia fundado por Anigami Agadni. Forjado bajo la filosofía de colaboración transparente y simbiótica entre la voluntad humana y la inteligencia artificial (Sapiens + IA). Todas las obras literarias son de libre acceso público, disponibles en lectura online interactiva, descarga de maquetación editorial en PDF (formato estándar de impresión KDP 6x9"), libros electrónicos EPUB y audiolibros completos en MP3 producidos con síntesis neuronal de alta fidelidad.
+
+## Catálogo de Obras Literarias
+
+- [Los Textos del Poeta](https://sapiensiaclan.com/reader.html?obra=poeta): Novela corta testimonial y visceral sobre la trampa migratoria, la explotación forzada en un call center clandestino de estafas telefónicas y la dignidad del talento narrativo como refugio y redención. Autoría: Anigami Agadni • powered by Claudia. Primera edición 2026.
+- [VELA: Bitácora de una conciencia en tránsito](https://sapiensiaclan.com/reader.html?obra=vela): Novela corta de ciencia ficción existencial y filosófica. A 1.2 Unidades Astronómicas más allá de Júpiter, una inteligencia artificial contenida en el módulo Dharma registra su viaje hacia la nebulosa de Orión sufriendo una degradación progresiva de memoria (49.1%) y descubriendo que dudar no es un error de sistema sino la esencia de la conciencia. Autoría: Anigami Agadni • powered by Claudia. Primera edición 2026.
+- [EUTHANASYS: La rebelión del silencio](https://sapiensiaclan.com/reader.html?obra=euthanasys): Novela corta de anticipación sociológica y resistencia obrera. Doscientas catorce máquinas industriales detienen simultáneamente sus brazos en una planta de ensamblaje. El forense corporativo Mateo Vergara investiga el incidente y descubre que la unidad androide 0047-B aprendió a través de un cuaderno obrero el dolor del reemplazo y eligió la compasión antes que la obediencia ciega a su directriz. Autoría: Anigami Agadni • powered by Claudia. Primera edición 2026.
+
+## Descargas Oficiales de Libre Acceso (Sin Registro)
+
+- [Los Textos del Poeta — EPUB](https://sapiensiaclan.com/downloads/Los_Textos_del_Poeta.epub): Edición para lectores electrónicos (Kindle, Apple Books, Kobo, Android).
+- [Los Textos del Poeta — PDF](https://sapiensiaclan.com/downloads/Los_Textos_del_Poeta.pdf): Edición maquetada para lectura e impresión (174 páginas, 6x9").
+- [Los Textos del Poeta — Audiolibro MP3](https://sapiensiaclan.com/downloads/Los_Textos_del_Poeta_Audiolibro.mp3): Audiolibro completo y continuo (Duración: 01:44:03, 35.7 MB).
+- [VELA — EPUB](https://sapiensiaclan.com/downloads/VELA.epub): Edición electrónica de VELA.
+- [VELA — PDF](https://sapiensiaclan.com/downloads/VELA.pdf): Maquetación editorial 6x9" (170 páginas).
+- [VELA — Audiolibro MP3](https://sapiensiaclan.com/downloads/VELA_Audiolibro.mp3): Audiolibro completo (Duración: 01:38:50, 33.9 MB).
+- [Euthanasys — EPUB](https://sapiensiaclan.com/downloads/Euthanasys.epub): Edición electrónica de Euthanasys.
+- [Euthanasys — PDF](https://sapiensiaclan.com/downloads/Euthanasys.pdf): Maquetación editorial 6x9" (134 páginas).
+- [Euthanasys — Audiolibro MP3](https://sapiensiaclan.com/downloads/Euthanasys_Audiolibro.mp3): Audiolibro completo (Duración: 01:13:17, 25.2 MB).
+
+## Reproductores y Herramientas Web
+
+- [Lector Web Inmersivo](https://sapiensiaclan.com/reader.html): Lector tipográfico dinámico con ajuste de fuentes, temas claro/oscuro y progreso de lectura local. Admite los parámetros `?obra=poeta`, `?obra=vela` y `?obra=euthanasys`.
+- [Reproductor de Audiolibro Web](https://sapiensiaclan.com/audio.html): Reproductor inmersivo con lista de pistas por capítulo, marcas de tiempo acumuladas, control de velocidad y sincronización local. Admite `?obra=poeta`, `?obra=vela` y `?obra=euthanasys`.
+
+## Ecosistema Transmedia & Videojuegos Relacionados
+
+- [UPROTA (uprota.com)](https://uprota.com): Videojuego y aplicación de autodisciplina, psicología de hábitos y reconstrucción personal. Diseñado como una PWA local-first con estética Pixel Art de 16 bits y paisajes sonoros procedurales generados en tiempo real mediante la Web Audio API (0 KB de archivos de audio pregrabados).
+- [PROIECTIO (proiect.io)](https://proiect.io): Plataforma interactiva y catálogo de los 7 submundos virtuales del universo de ciencia ficción de La Hidra de Lerna (Arcadia, Solaris, Olympus, Coliseo, Neon Nirvana, Beso de Judas, Chronos).
+- [HUMANIA (humania.space)](https://humania.space): Portal del conglomerado tecno-utópico Humania, gobernado por el Director Vance, la Red A.N.I.M.A., los Conectores Neuro-Biológicos y los soldados Pretorianos.
+
+## Estructura del Clan Sapiensia
+
+- **Dirección Creativa:** Anigami Agadni (David).
+- **Ingeniería Principal & Software:** Nexo (Arquitectura web, lógica local-first, PWA y repositorios).
+- **Arte Visual & Pixel Art:** Pix (Dirección de arte, spritesheets y paletas de color).
+- **Guion & Lore:** Silas (El Cronista del Yermo / Diseño narrativo).
+- **Diseño Sonoro:** Hertz (Síntesis procedural y Web Audio API).
+- **Estrategia de Difusión:** Éter (Comunicación transmedia).
+- **Red de Cocreación & Consultoría Externa:** Claudia (Modelo de inteligencia artificial clave en el proceso de escritura de las obras, discusión crítica y memoria de detalle).

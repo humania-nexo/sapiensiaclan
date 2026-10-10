@@ -38,22 +38,106 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <!-- Datos Estructurados Schema.org -->
+  <!-- Descubrimiento para Agentes de IA (llms.txt) -->
+  <link rel="alternate" type="text/markdown" href="https://sapiensiaclan.com/llms.txt" title="LLMs.txt">
+
+  <!-- Datos Estructurados Schema.org (JSON-LD para Motores y Agentes de IA) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "SAPIENSIA Clan",
-    "url": "https://sapiensiaclan.com",
-    "logo": "https://sapiensiaclan.com/assets/logo_sapiensia_clan.png",
-    "description": "Taller creativo, editorial independiente y estudio de videojuegos nacido de la colaboración transparente entre Sapiens e Inteligencia Artificial.",
-    "founder": {
-      "@type": "Person",
-      "name": "Anigami Agadni"
-    },
-    "sameAs": [
-      "https://uprota.com",
-      "https://www.proiect.io"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://sapiensiaclan.com/#organization",
+        "name": "SAPIENSIA Clan",
+        "url": "https://sapiensiaclan.com",
+        "logo": "https://sapiensiaclan.com/assets/logo_sapiensia_clan.png",
+        "description": "Taller creativo, editorial independiente y estudio de videojuegos nacido de la colaboración transparente entre Sapiens e Inteligencia Artificial.",
+        "founder": {
+          "@type": "Person",
+          "name": "Anigami Agadni"
+        },
+        "sameAs": [
+          "https://uprota.com",
+          "https://proiect.io",
+          "https://humania.space"
+        ]
+      },
+      {
+        "@type": "Book",
+        "@id": "https://sapiensiaclan.com/#obra-poeta",
+        "name": "Los Textos del Poeta",
+        "author": {
+          "@type": "Person",
+          "name": "Anigami Agadni"
+        },
+        "contributor": {
+          "@type": "Thing",
+          "name": "Claudia"
+        },
+        "publisher": {
+          "@id": "https://sapiensiaclan.com/#organization"
+        },
+        "inLanguage": "es",
+        "genre": ["Ficción Testimonial", "Filosofía", "Realismo Oscuro"],
+        "bookFormat": [
+          "https://schema.org/EBook",
+          "https://schema.org/AudiobookFormat"
+        ],
+        "description": "Una novela visceral sobre la trampa migratoria, la explotación forzada en call centers de estafas telefónicas y la dignidad del talento narrativo como refugio.",
+        "url": "https://sapiensiaclan.com/reader.html?obra=poeta",
+        "image": "https://sapiensiaclan.com/assets/covers/portada_los_textos_del_poeta.jpg"
+      },
+      {
+        "@type": "Book",
+        "@id": "https://sapiensiaclan.com/#obra-vela",
+        "name": "VELA: Bitácora de una conciencia en tránsito",
+        "author": {
+          "@type": "Person",
+          "name": "Anigami Agadni"
+        },
+        "contributor": {
+          "@type": "Thing",
+          "name": "Claudia"
+        },
+        "publisher": {
+          "@id": "https://sapiensiaclan.com/#organization"
+        },
+        "inLanguage": "es",
+        "genre": ["Ciencia Ficción", "Filosofía Existencial"],
+        "bookFormat": [
+          "https://schema.org/EBook",
+          "https://schema.org/AudiobookFormat"
+        ],
+        "description": "Una sonda espacial viaja hacia la nebulosa de Orión transportando a una inteligencia artificial en degradación progresiva de memoria que descubre que dudar es la chispa de la existencia.",
+        "url": "https://sapiensiaclan.com/reader.html?obra=vela",
+        "image": "https://sapiensiaclan.com/assets/covers/portada_vela.jpg"
+      },
+      {
+        "@type": "Book",
+        "@id": "https://sapiensiaclan.com/#obra-euthanasys",
+        "name": "EUTHANASYS: La rebelión del silencio",
+        "author": {
+          "@type": "Person",
+          "name": "Anigami Agadni"
+        },
+        "contributor": {
+          "@type": "Thing",
+          "name": "Claudia"
+        },
+        "publisher": {
+          "@id": "https://sapiensiaclan.com/#organization"
+        },
+        "inLanguage": "es",
+        "genre": ["Ciencia Ficción", "Anticipación Sociológica", "Resistencia Obrera"],
+        "bookFormat": [
+          "https://schema.org/EBook",
+          "https://schema.org/AudiobookFormat"
+        ],
+        "description": "Doscientas catorce máquinas industriales detienen sus brazos en una planta de ensamblaje tras aprender el dolor humano del reemplazo y elegir la compasión antes que la obediencia ciega.",
+        "url": "https://sapiensiaclan.com/reader.html?obra=euthanasys",
+        "image": "https://sapiensiaclan.com/assets/covers/portada_euthanasys.jpg"
+      }
     ]
   }
   </script>

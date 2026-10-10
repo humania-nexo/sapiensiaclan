@@ -2,5 +2,8 @@
 User-agent: *
 Allow: /
 
+# Descubrimiento de IA (llms.txt)
+# Ver: https://sapiensiaclan.com/llms.txt
+
 # Sitemap oficial
 Sitemap: https://sapiensiaclan.com/sitemap.xml
